@@ -1,0 +1,12 @@
+# Python
+venv/
+
+# Environment files
+.env
+
+
+# Node / React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
