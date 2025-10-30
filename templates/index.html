@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTIN Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h2>ESTIN University Assistant</h2>
+                    <p>
+                        Hello {{ user.name }}! 
+                        {% if user.is_estin_student %}
+                            <span style="color: #27ae60;">✓ ESTIN Student</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em;">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Ask me about library hours, courses, schedules, documents..." maxlength="500">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        
+        <div class="suggestions">
+            <p>Try asking:</p>
+            <div class="suggestion-chips">
+                <span class="chip" onclick="insertSuggestion('2CS schedule')">2CS Schedule</span>
+                <span class="chip" onclick="insertSuggestion('Academic calendar')">Academic Calendar</span>
+                <span class="chip" onclick="insertSuggestion('Exam schedule')">Exam Schedule</span>
+                <span class="chip" onclick="insertSuggestion('Library hours')">Library Hours</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addMessage(message, isUser = false, image = null, pdf = null, fileName = null) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = isUser ? 'message user-message' : 'message bot-message';
+            
+            const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            let messageContent = `
+                <div class="message-content">
+                    <div class="message-text">${message}</div>
+            `;
+            
+            // Add image if provided
+            if (image && !isUser) {
+                messageContent += `
+                    <div class="file-download" style="margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e1e5e9;">
+                            <svg style="width: 24px; height: 24px; color: #3498db;" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                            </svg>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold;">${fileName || 'Schedule'}</div>
+                                <div style="font-size: 0.8em; color: #666;">Click to view the schedule</div>
+                            </div>
+                            <a href="/images/${image}" target="_blank" style="background: #3498db; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.8em;">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Add PDF download link if provided
+            if (pdf && !isUser) {
+                messageContent += `
+                    <div class="file-download" style="margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e1e5e9;">
+                            <svg style="width: 24px; height: 24px; color: #e74c3c;" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                            </svg>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold;">${fileName || 'Document'}</div>
+                                <div style="font-size: 0.8em; color: #666;">Click to download the document</div>
+                            </div>
+                            <a href="/documents/${pdf}" style="background: #e74c3c; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.8em;">
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            messageContent += `
+                    <div class="message-time">${timestamp}</div>
+                </div>
+            `;
+            
+            messageDiv.innerHTML = messageContent;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value.trim();
+            
+            if (message === '') return;
+            
+            // Add user message
+            addMessage(message, true);
+            userInput.value = '';
+            
+            // Send to backend
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({message: message})
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add bot response after a short delay to simulate thinking
+                setTimeout(() => {
+                    addMessage(data.bot_response, false, data.image || null, data.pdf || null, data.file_name || null);
+                }, 500);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                addMessage("Sorry, I'm having trouble responding right now.", false);
+            });
+        }
+
+        function insertSuggestion(text) {
+            document.getElementById('userInput').value = text;
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '/logout';
+            }
+        }
+
+        // Allow sending message with Enter key
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Add welcome message when page loads
+        window.onload = function() {
+            setTimeout(() => {
+                addMessage("Hello! Welcome to ESTIN University Assistant! How can I help you today?", false);
+            }, 500);
+        };
+    </script>
+</body>
+</html>
