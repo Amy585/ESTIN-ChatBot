@@ -129,6 +129,23 @@ def get_response(user_input):
 
 def smart_fallback(user_input_lower):
     """Intelligent fallback responses based on question patterns"""
+    # Add synonym detection
+    synonyms = {
+        "timing": ["when", "what time", "schedule", "hours", "open", "close"],
+        "procedures": ["how", "where can i", "how to", "process", "procedure"],
+        "information": ["what", "tell me about", "information", "explain"]
+    }
+    
+    # Add context awareness
+    if "thank" in user_input_lower:
+        return "You're welcome! 😊 Is there anything else about ESTIN I can help with?"
+    
+    # Add personality
+    responses = [
+        "I'd love to help with ESTIN! Try asking about...",
+        "Great question! For ESTIN information, you might want to know about...",
+        "I specialize in ESTIN University! You could ask me about..."
+    ]
     
     # Question type detection
     if any(word in user_input_lower for word in ["when", "what time", "what date", "schedule", "hours"]):
