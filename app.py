@@ -5,7 +5,7 @@ import json
 import re
 import os
 import secrets
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -23,8 +23,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(200), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     is_estin_student = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    last_login = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    last_login = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     login_count = db.Column(db.Integer, default=0)
 
     def set_password(self, password):
@@ -32,6 +32,16 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+# Chat Message Model
+class ChatMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    is_user = db.Column(db.Boolean, nullable=False)  # True for user, False for bot
+    timestamp = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    
+    user = db.relationship('User', backref=db.backref('chat_messages', lazy=True))
 
 # Create database tables
 with app.app_context():
@@ -93,10 +103,10 @@ def get_response(user_input):
     user_input_lower = user_input.lower()
     
     # Special case for greetings that should have priority
-    greeting_words = ["hello", "hi", "hey", "how are you", "good morning", "good afternoon", "good evening"]
+    greeting_words = ["hello", "hi", "hey", "how are you", "how are u", "good morning", "good afternoon", "good evening"]
     for word in greeting_words:
         if word in user_input_lower:
-            if "how are you" in user_input_lower:
+            if any(greet in user_input_lower for greet in ["how are you", "how are u"]):
                 return knowledge_base.get("greeting_how_are_you")
             elif any(greet in user_input_lower for greet in ["hi", "hey"]):
                 return knowledge_base.get("greeting_hi")
@@ -129,23 +139,6 @@ def get_response(user_input):
 
 def smart_fallback(user_input_lower):
     """Intelligent fallback responses based on question patterns"""
-    # Add synonym detection
-    synonyms = {
-        "timing": ["when", "what time", "schedule", "hours", "open", "close"],
-        "procedures": ["how", "where can i", "how to", "process", "procedure"],
-        "information": ["what", "tell me about", "information", "explain"]
-    }
-    
-    # Add context awareness
-    if "thank" in user_input_lower:
-        return "You're welcome! 😊 Is there anything else about ESTIN I can help with?"
-    
-    # Add personality
-    responses = [
-        "I'd love to help with ESTIN! Try asking about...",
-        "Great question! For ESTIN information, you might want to know about...",
-        "I specialize in ESTIN University! You could ask me about..."
-    ]
     
     # Question type detection
     if any(word in user_input_lower for word in ["when", "what time", "what date", "schedule", "hours"]):
@@ -169,7 +162,7 @@ def smart_fallback(user_input_lower):
     else:
         # General fallback with suggestions
         return "I'm not sure I understand. I can help you with:\n• Course schedules and timetables\n• Library and administration hours\n• University procedures and documents\n• ESTIN facilities and services\n\nTry asking about specific ESTIN-related topics!"
-    
+
 # Test route to check database
 @app.route('/test-db')
 def test_db():
@@ -184,7 +177,7 @@ def test_db():
 @app.route('/')
 def home():
     if 'user_id' in session:
-        user = User.query.get(session['user_id'])
+        user = db.session.get(User, session['user_id'])
         return render_template('index.html', user=user)
     return redirect(url_for('auth'))
 
@@ -258,7 +251,7 @@ def login():
     
     if user and user.check_password(password):
         # Update login stats
-        user.last_login = datetime.utcnow()
+        user.last_login = datetime.now(timezone.utc)
         user.login_count += 1
         db.session.commit()
         
@@ -273,8 +266,27 @@ def send_message():
     if 'user_id' not in session:
         return jsonify({'error': 'Not authenticated'}), 401
     
+    user_id = session['user_id']
     user_message = request.json['message']
     bot_response = get_response(user_message)
+    
+    # Save user message to database
+    user_msg = ChatMessage(
+        user_id=user_id,
+        message=user_message,
+        is_user=True
+    )
+    db.session.add(user_msg)
+    
+    # Save bot response to database
+    bot_msg = ChatMessage(
+        user_id=user_id,
+        message=bot_response,
+        is_user=False
+    )
+    db.session.add(bot_msg)
+    
+    db.session.commit()
     
     response_data = {
         'user_message': user_message,
@@ -328,6 +340,65 @@ def send_message():
             break
     
     return jsonify(response_data)
+
+@app.route('/chat_history')
+def chat_history():
+    if 'user_id' not in session:
+        return jsonify({'error': 'Not authenticated'}), 401
+    
+    # Get messages from the last 30 days
+    thirty_days_ago = datetime.now(timezone.utc) - timedelta(days=30)
+    
+    messages = ChatMessage.query.filter(
+        ChatMessage.user_id == session['user_id'],
+        ChatMessage.timestamp >= thirty_days_ago
+    ).order_by(ChatMessage.timestamp.asc()).all()
+    
+    # Group messages by date
+    history_by_date = {}
+    for msg in messages:
+        date_str = msg.timestamp.strftime('%Y-%m-%d')
+        if date_str not in history_by_date:
+            history_by_date[date_str] = []
+        
+        history_by_date[date_str].append({
+            'message': msg.message,
+            'is_user': msg.is_user,
+            'time': msg.timestamp.strftime('%H:%M')
+        })
+    
+    return jsonify(history_by_date)
+
+@app.route('/delete_chat_history', methods=['POST'])
+def delete_chat_history():
+    print("DELETE_CHAT_HISTORY: Route called")  # Debug line
+    if 'user_id' not in session:
+        print("DELETE_CHAT_HISTORY: User not authenticated")  # Debug line
+        return jsonify({'success': False, 'message': 'Not authenticated'}), 401
+    
+    try:
+        user_id = session['user_id']
+        print(f"DELETE_CHAT_HISTORY: Deleting messages for user_id: {user_id}")  # Debug line
+        
+        # First, check how many messages exist
+        message_count = ChatMessage.query.filter_by(user_id=user_id).count()
+        print(f"DELETE_CHAT_HISTORY: Found {message_count} messages to delete")  # Debug line
+        
+        # Delete all chat messages for the current user
+        deleted_count = ChatMessage.query.filter_by(user_id=user_id).delete()
+        db.session.commit()
+        
+        print(f"DELETE_CHAT_HISTORY: Successfully deleted {deleted_count} messages")  # Debug line
+        
+        return jsonify({
+            'success': True, 
+            'message': f'Successfully deleted {deleted_count} messages from your chat history'
+        })
+        
+    except Exception as e:
+        print(f"DELETE_CHAT_HISTORY: Error: {str(e)}")  # Debug line
+        db.session.rollback()
+        return jsonify({'success': False, 'message': f'Error deleting history: {str(e)}'}), 500
 
 @app.route('/images/<filename>')
 def serve_image(filename):

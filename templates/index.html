@@ -1,169 +1,413 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESTIN Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <h2>ESTIN University Assistant</h2>
-                    <p>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="w-full max-w-7xl h-[95vh] bg-white rounded-2xl shadow-2xl flex overflow-hidden">
+<!-- Sidebar -->
+<div id="sidebar" class="w-80 bg-estin-blue text-white p-5 overflow-y-auto sidebar-scrollbar transition-all duration-300 lg:block hidden">
+    <div class="border-b border-estin-dark pb-4 mb-4">
+        <div class="flex justify-between items-center">
+            <div>
+                <h3 class="text-xl font-bold text-white">📚 Chat History</h3>
+                <p class="text-sm text-gray-300 mt-1">Last 30 days</p>
+            </div>
+            <button 
+                onclick="deleteChatHistory()" 
+                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors duration-200 flex items-center gap-1"
+                title="Delete all chat history"
+            >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+                Delete All
+            </button>
+        </div>
+    </div>
+    <div id="chatHistory">
+        <div class="text-center text-gray-400 italic mt-5">No chat history yet</div>
+    </div>
+</div>
+    
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-estin-blue to-estin-dark text-white p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="text-center sm:text-left">
+                    <h2 class="text-2xl font-bold">ESTIN University Assistant</h2>
+                    <p class="text-gray-300 mt-1">
                         Hello {{ user.name }}! 
                         {% if user.is_estin_student %}
-                            <span style="color: #27ae60;">✓ ESTIN Student</span>
+                            <span class="text-green-400 ml-2">✓ ESTIN Student</span>
                         {% endif %}
                     </p>
                 </div>
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9em;">
+                <div class="flex items-center justify-center sm:justify-end gap-3 flex-wrap">
+                    <button onclick="toggleSidebar()" class="bg-estin-light hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 flex items-center gap-2">
+                        <span>📚</span>
+                        <span class="hidden sm:inline">History</span>
+                    </button>
+                    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200">
                         Logout
                     </button>
                 </div>
             </div>
         </div>
         
-        <div class="chat-messages" id="chatMessages">
+        <!-- Chat Messages -->
+        <div class="flex-1 bg-gray-50 p-4 md:p-6 overflow-y-auto custom-scrollbar" id="chatMessages">
             <!-- Messages will appear here -->
         </div>
         
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Ask me about library hours, courses, schedules, documents..." maxlength="500">
-            <button onclick="sendMessage()">Send</button>
+        <!-- Chat Input -->
+        <div class="bg-white border-t border-gray-200 p-4 md:p-6">
+            <div class="flex gap-3">
+                <input 
+                    type="text" 
+                    id="userInput" 
+                    placeholder="Ask me about library hours, courses, schedules, documents..." 
+                    maxlength="500"
+                    class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-full focus:outline-none focus:border-estin-purple transition-colors duration-200"
+                >
+                <button 
+                    onclick="sendMessage()"
+                    class="bg-gradient-to-r from-estin-purple to-purple-600 hover:from-purple-600 hover:to-estin-purple text-white px-6 py-3 rounded-full font-semibold transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                >
+                    Send
+                </button>
+            </div>
         </div>
         
-        <div class="suggestions">
-            <p>Try asking:</p>
-            <div class="suggestion-chips">
-                <span class="chip" onclick="insertSuggestion('2CS schedule')">2CS Schedule</span>
-                <span class="chip" onclick="insertSuggestion('Academic calendar')">Academic Calendar</span>
-                <span class="chip" onclick="insertSuggestion('Exam schedule')">Exam Schedule</span>
-                <span class="chip" onclick="insertSuggestion('Library hours')">Library Hours</span>
+        <!-- Suggestions -->
+        <div class="bg-gray-50 border-t border-gray-200 p-4 md:p-6">
+            <p class="text-center text-gray-600 text-sm mb-3">Try asking:</p>
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="insertSuggestion('2CS schedule')" class="bg-white hover:bg-estin-purple hover:text-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 text-sm transition-all duration-200 transform hover:scale-105">
+                    2CS Schedule
+                </button>
+                <button onclick="insertSuggestion('Academic calendar')" class="bg-white hover:bg-estin-purple hover:text-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 text-sm transition-all duration-200 transform hover:scale-105">
+                    Academic Calendar
+                </button>
+                <button onclick="insertSuggestion('Exam schedule')" class="bg-white hover:bg-estin-purple hover:text-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 text-sm transition-all duration-200 transform hover:scale-105">
+                    Exam Schedule
+                </button>
+                <button onclick="insertSuggestion('Library hours')" class="bg-white hover:bg-estin-purple hover:text-white text-gray-700 px-4 py-2 rounded-full border border-gray-300 text-sm transition-all duration-200 transform hover:scale-105">
+                    Library Hours
+                </button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        function addMessage(message, isUser = false, image = null, pdf = null, fileName = null) {
-            const chatMessages = document.getElementById('chatMessages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = isUser ? 'message user-message' : 'message bot-message';
-            
-            const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            let messageContent = `
-                <div class="message-content">
-                    <div class="message-text">${message}</div>
-            `;
-            
-            // Add image if provided
-            if (image && !isUser) {
-                messageContent += `
-                    <div class="file-download" style="margin-top: 10px;">
-                        <div style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e1e5e9;">
-                            <svg style="width: 24px; height: 24px; color: #3498db;" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-                            </svg>
-                            <div style="flex: 1;">
-                                <div style="font-weight: bold;">${fileName || 'Schedule'}</div>
-                                <div style="font-size: 0.8em; color: #666;">Click to view the schedule</div>
-                            </div>
-                            <a href="/images/${image}" target="_blank" style="background: #3498db; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.8em;">
-                                View
-                            </a>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Add PDF download link if provided
-            if (pdf && !isUser) {
-                messageContent += `
-                    <div class="file-download" style="margin-top: 10px;">
-                        <div style="display: flex; align-items: center; gap: 10px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #e1e5e9;">
-                            <svg style="width: 24px; height: 24px; color: #e74c3c;" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-                            </svg>
-                            <div style="flex: 1;">
-                                <div style="font-weight: bold;">${fileName || 'Document'}</div>
-                                <div style="font-size: 0.8em; color: #666;">Click to download the document</div>
-                            </div>
-                            <a href="/documents/${pdf}" style="background: #e74c3c; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 0.8em;">
-                                Download
-                            </a>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            messageContent += `
-                    <div class="message-time">${timestamp}</div>
-                </div>
-            `;
-            
-            messageDiv.innerHTML = messageContent;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+<!-- Mobile sidebar backdrop -->
+<div id="sidebarBackdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden" onclick="toggleSidebar()"></div>
+
+<script>
+    let sidebarVisible = window.innerWidth >= 1024; // Visible by default on desktop
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebarBackdrop');
+        
+        sidebarVisible = !sidebarVisible;
+        
+        if (sidebarVisible) {
+            sidebar.classList.remove('hidden');
+            backdrop.classList.remove('hidden');
+            sidebar.classList.add('block');
+            backdrop.classList.add('block');
+            loadChatHistory();
+        } else {
+            sidebar.classList.add('hidden');
+            backdrop.classList.add('hidden');
+            sidebar.classList.remove('block');
+            backdrop.classList.remove('block');
         }
+    }
 
-        function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const message = userInput.value.trim();
-            
-            if (message === '') return;
-            
-            // Add user message
-            addMessage(message, true);
-            userInput.value = '';
-            
-            // Send to backend
-            fetch('/send_message', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({message: message})
-            })
+    function loadChatHistory() {
+        fetch('/chat_history')
             .then(response => response.json())
-            .then(data => {
-                // Add bot response after a short delay to simulate thinking
-                setTimeout(() => {
-                    addMessage(data.bot_response, false, data.image || null, data.pdf || null, data.file_name || null);
-                }, 500);
+            .then(history => {
+                const historyContainer = document.getElementById('chatHistory');
+                
+                if (Object.keys(history).length === 0) {
+                    historyContainer.innerHTML = '<div class="text-center text-gray-400 italic mt-5">No chat history yet</div>';
+                    return;
+                }
+                
+                let historyHTML = '';
+                
+                // Sort dates in descending order (newest first)
+                const sortedDates = Object.keys(history).sort((a, b) => new Date(b) - new Date(a));
+                
+                sortedDates.forEach(date => {
+                    const messages = history[date];
+                    const formattedDate = new Date(date + 'T00:00:00').toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    historyHTML += `
+                        <div class="text-gray-300 text-sm font-semibold mt-4 mb-2 first:mt-0">${formattedDate}</div>
+                    `;
+                    
+                    messages.forEach(msg => {
+                        const messageClass = msg.is_user ? 'border-l-4 border-estin-light' : 'border-l-4 border-green-500';
+                        const messagePreview = msg.message.length > 50 
+                            ? msg.message.substring(0, 50) + '...' 
+                            : msg.message;
+                        
+                        historyHTML += `
+                            <div class="bg-estin-dark hover:bg-gray-700 p-3 rounded-lg mb-2 cursor-pointer transition-colors duration-200 ${messageClass}" 
+                                 onclick="loadMessage('${msg.message.replace(/'/g, "\\'")}')">
+                                <div class="text-white text-sm">${messagePreview}</div>
+                                <div class="text-gray-400 text-xs mt-1">${msg.time}</div>
+                            </div>
+                        `;
+                    });
+                });
+                
+                historyContainer.innerHTML = historyHTML;
             })
             .catch(error => {
-                console.error('Error:', error);
-                addMessage("Sorry, I'm having trouble responding right now.", false);
+                console.error('Error loading chat history:', error);
+                historyContainer.innerHTML = '<div class="text-center text-red-400 text-sm">Error loading history</div>';
             });
-        }
+    }
 
-        function insertSuggestion(text) {
-            document.getElementById('userInput').value = text;
+    function loadMessage(message) {
+        addMessage(message, false);
+        // Close sidebar on mobile after selecting a message
+        if (window.innerWidth < 1024) {
+            toggleSidebar();
         }
+    }
 
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                window.location.href = '/logout';
-            }
+    function addMessage(message, isUser = false, image = null, pdf = null, fileName = null) {
+        const chatMessages = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        
+        const messageClasses = isUser 
+            ? 'flex justify-end' 
+            : 'flex justify-start';
+        
+        const contentClasses = isUser
+            ? 'bg-gradient-to-r from-estin-purple to-purple-600 text-white rounded-2xl rounded-br-md max-w-[85%] md:max-w-[70%]'
+            : 'bg-white text-gray-800 border border-gray-200 rounded-2xl rounded-bl-md max-w-[85%] md:max-w-[70%] shadow-sm';
+        
+        messageDiv.className = messageClasses + ' mb-4';
+        
+        const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        let messageContent = `
+            <div class="${contentClasses} p-4">
+                <div class="text-sm md:text-base whitespace-pre-wrap">${message}</div>
+        `;
+        
+        // Add image if provided
+        if (image && !isUser) {
+            messageContent += `
+                <div class="mt-3">
+                    <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <svg class="w-6 h-6 text-estin-light flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                        </svg>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-semibold text-gray-800 truncate">${fileName || 'Schedule'}</div>
+                            <div class="text-gray-500 text-xs">Click to view the schedule</div>
+                        </div>
+                        <a href="/images/${image}" target="_blank" class="bg-estin-light hover:bg-blue-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors duration-200 whitespace-nowrap">
+                            View
+                        </a>
+                    </div>
+                </div>
+            `;
         }
+        
+        // Add PDF download link if provided
+        if (pdf && !isUser) {
+            messageContent += `
+                <div class="mt-3">
+                    <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                        </svg>
+                        <div class="flex-1 min-w-0">
+                            <div class="font-semibold text-gray-800 truncate">${fileName || 'Document'}</div>
+                            <div class="text-gray-500 text-xs">Click to download the document</div>
+                        </div>
+                        <a href="/documents/${pdf}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-medium transition-colors duration-200 whitespace-nowrap">
+                            Download
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        messageContent += `
+                <div class="text-xs opacity-70 mt-2 text-right">${timestamp}</div>
+            </div>
+        `;
+        
+        messageDiv.innerHTML = messageContent;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-        // Allow sending message with Enter key
-        document.getElementById('userInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+    function sendMessage() {
+        const userInput = document.getElementById('userInput');
+        const message = userInput.value.trim();
+        
+        if (message === '') return;
+        
+        // Add user message
+        addMessage(message, true);
+        userInput.value = '';
+        
+        // Send to backend
+        fetch('/send_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({message: message})
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Add bot response after a short delay to simulate thinking
+            setTimeout(() => {
+                addMessage(data.bot_response, false, data.image || null, data.pdf || null, data.file_name || null);
+                // Reload history to show new messages
+                loadChatHistory();
+            }, 500);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            addMessage("Sorry, I'm having trouble responding right now.", false);
         });
+    }
 
-        // Add welcome message when page loads
-        window.onload = function() {
+    function insertSuggestion(text) {
+        document.getElementById('userInput').value = text;
+        document.getElementById('userInput').focus();
+    }
+
+    function logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            window.location.href = '/logout';
+        }
+    }
+
+    function deleteChatHistory() {
+    if (!confirm('Are you sure you want to delete all your chat history? This action cannot be undone.')) {
+        return;
+    }
+    
+    // Show loading state
+    const deleteBtn = document.querySelector('button[onclick="deleteChatHistory()"]');
+    const originalText = deleteBtn.innerHTML;
+    deleteBtn.innerHTML = '<div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div> Deleting...';
+    deleteBtn.disabled = true;
+    
+    fetch('/delete_chat_history', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin' // Important for session cookies
+    })
+    .then(response => {
+        console.log('Response status:', response.status); // Debug
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data); // Debug
+        if (data.success) {
+            // Clear the chat history display
+            document.getElementById('chatHistory').innerHTML = '<div class="text-center text-gray-400 italic mt-5">No chat history yet</div>';
+            
+            // Show success message
+            showNotification(data.message, 'success');
+            
+            // Optionally clear the chat messages area too
+            document.getElementById('chatMessages').innerHTML = '';
             setTimeout(() => {
                 addMessage("Hello! Welcome to ESTIN University Assistant! How can I help you today?", false);
             }, 500);
-        };
-    </script>
-</body>
-</html>
+            
+        } else {
+            showNotification(data.message || 'Failed to delete history', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting history:', error);
+        showNotification('Error deleting chat history: ' + error.message, 'error');
+    })
+    .finally(() => {
+        // Restore button state
+        deleteBtn.innerHTML = originalText;
+        deleteBtn.disabled = false;
+    });
+}
+
+// Helper function to show notifications
+function showNotification(message, type = 'info') {
+    // Remove existing notification if any
+    const existingNotification = document.getElementById('flashNotification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.id = 'flashNotification';
+    notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-medium transition-all duration-300 transform translate-x-0 ${
+        type === 'success' ? 'bg-green-500' : 
+        type === 'error' ? 'bg-red-500' : 
+        'bg-estin-blue'
+    }`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 5000);
+}
+
+    // Allow sending message with Enter key
+    document.getElementById('userInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Load chat history when page loads
+    window.onload = function() {
+        setTimeout(() => {
+            addMessage("Hello! Welcome to ESTIN University Assistant! How can I help you today?", false);
+            loadChatHistory();
+        }, 500);
+    };
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024) {
+            document.getElementById('sidebar').classList.remove('hidden');
+            document.getElementById('sidebarBackdrop').classList.add('hidden');
+        } else {
+            document.getElementById('sidebar').classList.add('hidden');
+        }
+    });
+</script>
+{% endblock %}

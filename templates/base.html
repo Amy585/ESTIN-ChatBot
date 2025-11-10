@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ESTIN Chatbot{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'estin-blue': '#2c3e50',
+                        'estin-dark': '#34495e',
+                        'estin-light': '#3498db',
+                        'estin-purple': '#667eea',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar styles */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Sidebar scrollbar */
+        .sidebar-scrollbar::-webkit-scrollbar-track {
+            background: #34495e;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb {
+            background: #51657a;
+        }
+        .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #5a6f86;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-estin-purple to-purple-800 min-h-screen flex items-center justify-center p-4">
+    {% block content %}{% endblock %}
+</body>
+</html>
