@@ -6,15 +6,19 @@ import re
 import os
 import secrets
 from datetime import datetime, timedelta, timezone
+from rule_model import ChatbotEngine
+
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
+app.secret_key = os.environ.get('SECRET_KEY')
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///estin_chatbot.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+chatbot_engine = ChatbotEngine()
 
 # User Model
 class User(db.Model):
@@ -48,120 +52,7 @@ with app.app_context():
     db.create_all()
     print("Database tables created!")
 
-# Load the knowledge base
-with open('data.json', 'r', encoding='utf-8') as f:
-    knowledge_base = json.load(f)
 
-# Define rules matching your scope
-rules = {
-    "greeting_hello": ["hello", "hey", "hi", "greetings", "good morning", "good afternoon", "good evening"],
-    "greeting_hi": ["hi", "hey", "hello", "what's up", "yo"],
-    "greeting_how_are_you": ["how are you", "how do you do", "how's it going", "how are things"],
-    "greeting_goodbye": ["bye", "goodbye", "see you", "see ya", "farewell", "quit", "exit"],
-    
-    "library_opening": ["library", "opens", "opening", "time", "what time", "opens at"],
-    "library_closing": ["library", "closes", "closing", "close", "what time", "closes at"],
-    "library_weekend": ["library", "weekend", "saturday", "sunday", "weekend hours"],
-    "courses_start": ["courses", "start", "begin", "what time", "starting", "first session"],
-    "last_session": ["last", "session", "ends", "ending", "what time", "final", "last class"],
-    "administration_hours": ["administration", "available", "when", "open", "hours", "works"],
-    "second_year_program": ["program", "2cs", "second year", "1st", "first semester", "schedule", "timetable"],
-    "first_year_program": ["first year", "1cs", "1st year", "freshman", "schedule"],
-    "third_year_program": ["third year", "3cs", "3rd year", "junior", "schedule"],
-    "specialties_number": ["specialties", "specialities", "how many", "estin has", "branches", "majors"],
-    
-    "academic_calendar_pdf": ["academic calendar", "university calendar", "yearly schedule", "academic schedule"],
-    "course_catalog_pdf": ["course catalog", "catalogue", "all courses", "available courses", "course list"],
-    "exam_schedule_pdf": ["exam schedule", "exam timetable", "examination dates", "exam calendar"],
-    "registration_guide_pdf": ["registration guide", "how to register", "registration manual", "enrollment guide"],
-    "student_handbook_pdf": ["student handbook", "student manual", "university guide", "student guide"],
-    
-    "exam_period": ["exam", "exams", "period", "when", "dates", "schedule"],
-    "registration_deadline": ["registration", "deadline", "register", "when", "last date"],
-    "tuition_fees": ["tuition", "fees", "cost", "price", "how much", "fee"],
-    "scholarship_info": ["scholarship", "financial aid", "bursary", "grant"],
-    "academic_calendar": ["academic", "calendar", "semester", "year", "schedule"],
-    "it_department": ["it", "department", "computer", "support", "technical"],
-    "student_clubs": ["clubs", "student", "activities", "extracurricular", "groups"],
-    "wifi_access": ["wifi", "internet", "connection", "network", "connect"],
-    "transcript_request": ["transcript", "grades", "marks", "record", "request"],
-    "id_card_loss": ["id", "card", "lost", "missing", "student id", "replacement"],
-    "parking_info": ["parking", "car", "vehicle", "permit"],
-    "cafeteria_hours": ["cafeteria", "food", "restaurant", "eat", "lunch", "breakfast"],
-    "sports_facilities": ["sports", "gym", "basketball", "football", "exercise", "fitness"],
-    "professor_office": ["professor", "office", "hours", "teacher", "instructor"],
-    "book_rental": ["book", "rental", "textbook", "borrow", "library book"],
-    "graduation_requirements": ["graduation", "graduate", "requirements", "degree", "complete"],
-    "internship_opportunities": ["internship", "training", "work", "placement", "career"],
-    "coding_club": ["coding", "club", "programming", "meeting", "wednesday"],
-    "contact_email": ["contact", "email", "address", "how to contact", "reach"],
-    "holiday_schedule": ["holiday", "break", "vacation", "time off"],
-    "lab_access": ["lab", "computer lab", "access", "laboratory", "computers"]
-}
-
-def get_response(user_input):
-    user_input_lower = user_input.lower()
-    
-    # Special case for greetings that should have priority
-    greeting_words = ["hello", "hi", "hey", "how are you", "how are u", "good morning", "good afternoon", "good evening"]
-    for word in greeting_words:
-        if word in user_input_lower:
-            if any(greet in user_input_lower for greet in ["how are you", "how are u"]):
-                return knowledge_base.get("greeting_how_are_you")
-            elif any(greet in user_input_lower for greet in ["hi", "hey"]):
-                return knowledge_base.get("greeting_hi")
-            elif any(greet in user_input_lower for greet in ["hello", "good morning", "good afternoon", "good evening"]):
-                return knowledge_base.get("greeting_hello")
-    
-    # Special case for goodbye
-    goodbye_words = ["bye", "goodbye", "see you", "quit", "exit"]
-    if any(word in user_input_lower for word in goodbye_words):
-        return knowledge_base.get("greeting_goodbye")
-    
-    # Count matches for each intent (YOUR EXISTING SYSTEM)
-    scores = {}
-    for intent, keywords in rules.items():
-        score = 0
-        for keyword in keywords:
-            if re.search(rf'\b{keyword}\b', user_input_lower):
-                score += 1
-        scores[intent] = score
-    
-    # Get the intent with the highest score
-    best_intent = max(scores, key=scores.get)
-    
-    # Only return a response if we have a reasonable match
-    if scores[best_intent] > 0:
-        return knowledge_base.get(best_intent, "I'm sorry, I don't have an answer for that yet.")
-    else:
-        # 🚀 NEW SMART FALLBACK SYSTEM
-        return smart_fallback(user_input_lower)
-
-def smart_fallback(user_input_lower):
-    """Intelligent fallback responses based on question patterns"""
-    
-    # Question type detection
-    if any(word in user_input_lower for word in ["when", "what time", "what date", "schedule", "hours"]):
-        return "I can help with timing questions! Try asking about:\n• Library hours\n• Course schedules\n• Exam periods\n• Administration availability"
-    
-    elif any(word in user_input_lower for word in ["how", "where can i", "how to", "where is", "how can i"]):
-        return "I can assist with procedures and locations! Try asking about:\n• How to get a student certificate\n• Where to find administration\n• How to register for courses\n• Library access procedures"
-    
-    elif any(word in user_input_lower for word in ["what", "tell me about", "information about", "explain"]):
-        return "I have information about ESTIN! Try asking about:\n• University specialties\n• Student clubs\n• Sports facilities\n• Academic programs"
-    
-    elif any(word in user_input_lower for word in ["why", "reason", "purpose"]):
-        return "I can explain university policies and procedures! Try asking about specific ESTIN rules or requirements."
-    
-    elif any(word in user_input_lower for word in ["who", "professor", "teacher", "head of"]):
-        return "I can help you find people at ESTIN! Try asking about department heads or specific professors."
-    
-    elif any(word in user_input_lower for word in ["cost", "price", "fee", "how much"]):
-        return "I have information about costs! Try asking about tuition fees or other university expenses."
-    
-    else:
-        # General fallback with suggestions
-        return "I'm not sure I understand. I can help you with:\n• Course schedules and timetables\n• Library and administration hours\n• University procedures and documents\n• ESTIN facilities and services\n\nTry asking about specific ESTIN-related topics!"
 
 # Test route to check database
 @app.route('/test-db')
@@ -268,8 +159,8 @@ def send_message():
     
     user_id = session['user_id']
     user_message = request.json['message']
-    bot_response = get_response(user_message)
-    
+    bot_data = chatbot_engine.get_response_with_files(user_message) 
+    bot_response = bot_data['text']    
     # Save user message to database
     user_msg = ChatMessage(
         user_id=user_id,
@@ -295,51 +186,15 @@ def send_message():
     }
     
     # Add image/pdf info if it's a schedule request
-    user_input_lower = user_message.lower()
-    
-    if "schedule" in user_input_lower or "program" in user_input_lower or "timetable" in user_input_lower:
-        if "2cs" in user_input_lower or "second" in user_input_lower:
-            if os.path.exists('documents/2cs_schedule.pdf'):
-                response_data['pdf'] = '2cs_schedule.pdf'
-                response_data['file_name'] = '2CS Schedule PDF'
-            elif os.path.exists('images/2cs_schedule.png'):
-                response_data['image'] = '2cs_schedule.png'
-                response_data['file_name'] = '2CS Schedule'
-                
-        elif "1st" in user_input_lower or "first" in user_input_lower:
-            if os.path.exists('documents/1st_year_schedule.pdf'):
-                response_data['pdf'] = '1st_year_schedule.pdf'
-                response_data['file_name'] = '1st Year Schedule PDF'
-            elif os.path.exists('images/1st_year_schedule.png'):
-                response_data['image'] = '1st_year_schedule.png'
-                response_data['file_name'] = '1st Year Schedule'
-                
-        elif "3rd" in user_input_lower or "third" in user_input_lower:
-            if os.path.exists('documents/3rd_year_schedule.pdf'):
-                response_data['pdf'] = '3rd_year_schedule.pdf'
-                response_data['file_name'] = '3rd Year Schedule PDF'
-            elif os.path.exists('images/3rd_year_schedule.png'):
-                response_data['image'] = '3rd_year_schedule.png'
-                response_data['file_name'] = '3rd Year Schedule'
-    
-    # Add PDF info for document requests
-    pdf_mappings = {
-        "academic_calendar_pdf": {"file": "academic_calendar.pdf", "name": "Academic Calendar"},
-        "course_catalog_pdf": {"file": "course_catalog.pdf", "name": "Course Catalog"},
-        "exam_schedule_pdf": {"file": "exam_schedule.pdf", "name": "Exam Schedule"},
-        "registration_guide_pdf": {"file": "registration_guide.pdf", "name": "Registration Guide"},
-        "student_handbook_pdf": {"file": "student_handbook.pdf", "name": "Student Handbook"}
-    }
-    
-    for intent_key, pdf_info in pdf_mappings.items():
-        if knowledge_base.get(intent_key, "").strip() in bot_response:
-            pdf_path = f"documents/{pdf_info['file']}"
-            if os.path.exists(pdf_path):
-                response_data['pdf'] = pdf_info['file']
-                response_data['file_name'] = pdf_info['name']
-            break
+    if bot_data.get('file'):
+        if bot_data['file']['type'] == 'pdf':
+            response_data['pdf'] = bot_data['file']['path']
+        elif bot_data['file']['type'] == 'image':
+            response_data['image'] = bot_data['file']['path']
+        response_data['file_name'] = bot_data['file']['name']
     
     return jsonify(response_data)
+
 
 @app.route('/chat_history')
 def chat_history():

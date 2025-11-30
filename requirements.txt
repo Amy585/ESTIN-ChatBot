@@ -1,0 +1,7 @@
+fastapi
+gunicorn
+scikit-learn
+numpy
+pandas
+python-dotenv
+flask-sqlalchemy

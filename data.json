@@ -9,7 +9,14 @@
   "courses_start": "Courses start at 8:30 am",
   "last_session": "The last session ends at 4:30 pm",
   "administration_hours": "The administration is available on Sunday, Tuesday and Thursday from 8:30 AM to 3:30 PM",
-  "second_year_program": "Here is the schedule for 2CS 1st semester:",
+  "second_year_program": {
+        "text": "Here is the schedule for the second year (2CS).",
+        "file": {
+            "type": "pdf",
+            "path": "2cs_schedule.pdf",
+            "name": "2CS Program Schedule"
+        }
+    },
   "first_year_program": "Here is the schedule for 1st year:",
   "third_year_program": "Here is the schedule for 3rd year:",
   "specialties_number": "ESTIN has 3 specialities: Data Science & Artificial Intelligence, Cyber Security and IoT",
