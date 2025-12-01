@@ -1,0 +1,52 @@
+{
+  "greeting_hello": "Hello! Welcome to ESTIN University Assistant! How can I help you today?",
+  "greeting_hi": "Hi there! I'm here to help with any questions about ESTIN University. What do you need to know?",
+  "greeting_how_are_you": "I'm doing great, thank you! Ready to help you with ESTIN-related questions. What can I assist you with?",
+  "greeting_goodbye": "Goodbye! Feel free to come back if you have more questions about ESTIN!",
+  
+  "library_opening": "The library opens at 8:00 am",
+  "library_closing": "The library closes at 11:00 pm",
+  "courses_start": "Courses start at 8:30 am",
+  "last_session": "The last session ends at 4:30 pm",
+  "administration_hours": "The administration is available on Sunday, Tuesday and Thursday from 8:30 AM to 3:30 PM",
+  "second_year_program": {
+        "text": "Here is the schedule for the second year (2CS).",
+        "file": {
+            "type": "pdf",
+            "path": "2cs_schedule.pdf",
+            "name": "2CS Program Schedule"
+        }
+    },
+  "first_year_program": "Here is the schedule for 1st year:",
+  "third_year_program": "Here is the schedule for 3rd year:",
+  "specialties_number": "ESTIN has 3 specialities: Data Science & Artificial Intelligence, Cyber Security and IoT",
+  
+  "academic_calendar_pdf": "Here is the official academic calendar:",
+  "course_catalog_pdf": "Here is the complete course catalog:",
+  "exam_schedule_pdf": "Here is the exam schedule:",
+  "registration_guide_pdf": "Here is the registration guide:",
+  "student_handbook_pdf": "Here is the student handbook:",
+  
+  "library_weekend": "The library is open on weekends from 9:00 AM to 8:00 PM",
+  "exam_period": "The exam period for this semester is from January 15th to January 30th",
+  "registration_deadline": "Registration for the next semester ends on February 10th",
+  "tuition_fees": "Annual tuition fees are 45,000 DZD for national students and 90,000 DZD for international students",
+  "scholarship_info": "Scholarship applications are open from September 1st to September 30th. Contact the financial aid office for more details",
+  "academic_calendar": "The academic year is divided into two semesters: Fall (September-January) and Spring (February-June)",
+  "it_department": "The IT department is located in Block B, 2nd floor. Contact: it-support@estin.dz",
+  "student_clubs": "ESTIN has various clubs: Programming Club, Robotics Club, Debate Club, and Sports Club",
+  "wifi_access": "WiFi access: Connect to 'ESTIN-WiFi' using your student credentials. For issues, contact IT support",
+  "transcript_request": "To request a transcript, visit the administration office with your student ID. Processing time is 3-5 days",
+  "id_card_loss": "If you lose your student ID, report immediately to the administration office. Replacement fee: 500 DZD",
+  "parking_info": "Student parking is available in the west parking lot. Parking permit required - get it from security office",
+  "cafeteria_hours": "Cafeteria hours: 7:00 AM - 7:00 PM. Breakfast: 7-10 AM, Lunch: 11 AM-2 PM, Snacks: 2-7 PM",
+  "sports_facilities": "Sports facilities include a gym, basketball court, and football field. Open from 6:00 AM to 10:00 PM",
+  "professor_office": "Professor office hours are posted on their office doors and the department bulletin boards",
+  "book_rental": "Textbook rental is available at the library. Maximum 3 books for 2 weeks",
+  "graduation_requirements": "Graduation requires completing all courses, minimum GPA of 2.0, and no outstanding fees",
+  "internship_opportunities": "Internship opportunities are posted on the career portal. Contact the career office for guidance",
+  "coding_club": "The Coding Club meets every Wednesday at 4:00 PM in Room B203",
+  "contact_email": "For general inquiries: info@estin.dz, Administration: admin@estin.dz, IT: support@estin.dz",
+  "holiday_schedule": "Next holidays: Winter break from December 20th to January 5th",
+  "lab_access": "Computer labs are accessible from 8:00 AM to 8:00 PM. Student ID required for entry"
+}

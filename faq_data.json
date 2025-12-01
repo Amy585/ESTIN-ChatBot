@@ -1,0 +1,985 @@
+{
+  "intents": [
+    {
+      "tag": "greeting_hello",
+      "patterns": [
+        "Hello",
+        "Greetings",
+        "Good day",
+        "I want to talk to you",
+        "Are you there",
+        "Can you help me",
+        "Start conversation",
+        "I have a question",
+        "Hello assistant",
+        "Hi there",
+        "Excuse me",
+        "I need assistance",
+        "Help please",
+        "Talk to a bot",
+        "Good morning",
+        "Good afternoon",
+        "Good evening",
+        "I'm looking for info",
+        "I'm new here",
+        "ESTIN bot, are you active"
+      ],
+      "response": [
+        "Hello! Welcome to ESTIN University Assistant! How can I help you today?"
+      ],
+      "file": null
+    },
+    {
+      "tag": "greeting_hi",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "Sup",
+        "What's up",
+        "Yo",
+        "Howdy",
+        "Hey ESTIN",
+        "Hello, ESTIN assistant",
+        "I'm here to chat",
+        "Ready to chat",
+        "Need some help quickly",
+        "Got a query",
+        "I have a quick question",
+        "Speak to me",
+        "Good to see you online",
+        "Let's start the queries",
+        "I need information please",
+        "Hi, I'm a student",
+        "Hey bot, let's go",
+        "Hi, ESTIN University"
+      ],
+      "response": [
+        "Hi there! I'm here to help with any questions about ESTIN University. What do you need to know?"
+      ],
+      "file": null
+    },
+    {
+      "tag": "greeting_how_are_you",
+      "patterns": [
+        "How are you",
+        "How's it going",
+        "What are you doing",
+        "How have you been",
+        "Are you well",
+        "How are you today",
+        "You doing okay",
+        "What's your status",
+        "Everything alright with you",
+        "How do you feel",
+        "What's new with the bot",
+        "Are you functional",
+        "Working fine today",
+        "Tell me how you are",
+        "How is the ESTIN assistant",
+        "Are you available to chat now",
+        "Ready for my questions",
+        "Hope you're fine",
+        "What's going on with you",
+        "How is your operation"
+      ],
+      "response": [
+        "I'm doing great, thank you! Ready to help you with ESTIN-related questions. What can I assist you with?"
+      ],
+      "file": null
+    },
+    {
+      "tag": "greeting_goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "I'm leaving now",
+        "Thanks, bye",
+        "That's all for now",
+        "Gotta go now",
+        "Talk to you soon",
+        "End conversation",
+        "Goodnight",
+        "So long",
+        "Farewell",
+        "I'm done here",
+        "Close chat",
+        "Thanks for the help",
+        "Have a good day",
+        "I'll be back later",
+        "That concludes my questions",
+        "I finished my questions",
+        "End session"
+      ],
+      "response": [
+        "Goodbye! Feel free to come back if you have more questions about ESTIN!"
+      ],
+      "file": null
+    },
+    {
+      "tag": "library_opening",
+      "patterns": [
+        "When does the library open",
+        "Library opening time",
+        "What time is the library open",
+        "At what time does the library start",
+        "Tell me the library opening hours",
+        "When can I enter the library",
+        "Library start time",
+        "When does the ESTIN library open its doors",
+        "Opening time for the university library",
+        "What are the library's start hours",
+        "Give me the library opening time",
+        "When do they open the library",
+        "Library opening",
+        "First hour of the library",
+        "What time does the ESTIN library become available",
+        "Library operating start time",
+        "When is the library accessible",
+        "Opening time for reading room",
+        "University library opens at what time",
+        "What is the earliest I can go to the library"
+      ],
+      "response": [
+        "The library opens at 8:00 am"
+      ],
+      "file": null
+    },
+    {
+      "tag": "library_closing",
+      "patterns": [
+        "When does the library close",
+        "Library closing time",
+        "What time does the library close",
+        "At what time does the library end",
+        "Tell me the library closing hours",
+        "When do I have to leave the library",
+        "Library end time",
+        "When does the ESTIN library shut its doors",
+        "Closing time for the university library",
+        "What are the library's end hours",
+        "Give me the library closing time",
+        "When do they close the library",
+        "Library closing",
+        "Last hour of the library",
+        "What time does the ESTIN library close down",
+        "Library operating end time",
+        "When is the library no longer accessible",
+        "Closing time for students",
+        "University library closes at what time",
+        "What is the latest I can stay in the library"
+      ],
+      "response": [
+        "The library closes at 11:00 pm"
+      ],
+      "file": null
+    },
+    {
+      "tag": "courses_start",
+      "patterns": [
+        "When do courses start",
+        "What time does class begin",
+        "Starting time for classes",
+        "When does the first session start",
+        "What time do lectures begin",
+        "Start of courses at ESTIN",
+        "Tell me the course start time",
+        "What's the earliest class time",
+        "When does the first lecture happen",
+        "Class start time",
+        "University course start time",
+        "What time do lessons begin",
+        "When do we start learning",
+        "First class of the day time",
+        "Start time for university sessions",
+        "Academic courses start at",
+        "What's the usual course start time",
+        "When is the initial lecture",
+        "Time for first course",
+        "Classes begin at"
+      ],
+      "response": [
+        "Courses start at 8:30 am"
+      ],
+      "file": null
+    },
+    {
+      "tag": "last_session",
+      "patterns": [
+        "When is the last session",
+        "What time does the last class end",
+        "End of the last session",
+        "When does the final lecture finish",
+        "Closing time for academic sessions",
+        "What is the last class of the day",
+        "Last session end time",
+        "Time for the final session",
+        "When do sessions conclude",
+        "What time does university close for classes",
+        "Final session time",
+        "Last lecture time",
+        "When do we wrap up our studies",
+        "End of day classes",
+        "What is the latest class time",
+        "Time when classes finish",
+        "Last session end",
+        "Tell me the last class finish time",
+        "When are all the courses done for the day",
+        "Class finish time"
+      ],
+      "response": [
+        "The last session ends at 4:30 pm"
+      ],
+      "file": null
+    },
+    {
+      "tag": "administration_hours",
+      "patterns": [
+        "What are the administration hours",
+        "When is the admin office open",
+        "Administration working days",
+        "What time is the administration available",
+        "Admin office opening days",
+        "Operating hours for administration",
+        "When can I visit the administration",
+        "What days is the admin office open",
+        "Hours of the administration office",
+        "When does administration close",
+        "Admin office schedule",
+        "Availability of the administration",
+        "What days and hours does the administration work",
+        "Administration office time",
+        "Admin office open from when to when",
+        "What's the admin schedule",
+        "When can I find someone in administration",
+        "Opening times for admin staff",
+        "Administration operating hours",
+        "When are the administrative services available"
+      ],
+      "response": [
+        "The administration is available on Sunday, Tuesday and Thursday from 8:30 AM to 3:30 PM"
+      ],
+      "file": null
+    },
+    {
+      "tag": "second_year_program",
+      "patterns": [
+        "Show me the 2CS first semester schedule",
+        "What is the program for second year CS",
+        "2CS 1st semester courses",
+        "Schedule for 2nd year students",
+        "Can I see the 2CS semester 1 program",
+        "What are the second year classes",
+        "Program for the second year 1st semester",
+        "2CS curriculum",
+        "What subjects are in 2CS semester one",
+        "Give me the second year program",
+        "Show schedule for 2CS",
+        "List of courses for 2nd year",
+        "2CS semester 1 program details",
+        "What is on the 2nd year timetable",
+        "Courses for 2CS students",
+        "Schedule for the 1st semester of 2CS",
+        "2CS first semester syllabus",
+        "Where is the 2nd year first semester program",
+        "Curriculum for 2CS 1st semester",
+        "What is the 2CS schedule"
+      ],
+      "response": [
+        "Here is the schedule for 2CS 1st semester."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "2cs_schedule.pdf",
+        "name": "2CS Program Schedule"
+      }
+    },
+    {
+      "tag": "first_year_program",
+      "patterns": [
+        "Show me the first year schedule",
+        "What is the program for 1st year",
+        "1st year semester 1 courses",
+        "Schedule for first year students",
+        "Can I see the 1st year program",
+        "What are the first year classes",
+        "Program for the first year",
+        "First year curriculum",
+        "What subjects are in first year",
+        "Give me the first year program",
+        "Show schedule for 1st year",
+        "List of courses for 1st year",
+        "1st year syllabus details",
+        "What is on the 1st year timetable",
+        "Courses for new students",
+        "Schedule for the first semester of 1st year",
+        "First year program structure",
+        "Where is the first year curriculum",
+        "Curriculum for 1st year",
+        "What is the 1st year schedule"
+      ],
+      "response": [
+        "Here is the schedule for 1st year."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "1st_year_schedule.pdf",
+        "name": "1st Year Program Schedule"
+      }
+    },
+    {
+      "tag": "third_year_program",
+      "patterns": [
+        "Show me the third year schedule",
+        "What is the program for 3rd year",
+        "3rd year courses",
+        "Schedule for third year students",
+        "Can I see the 3rd year program",
+        "What are the third year classes",
+        "Program for the third year",
+        "Third year curriculum",
+        "What subjects are in third year",
+        "Give me the third year program",
+        "Show schedule for 3rd year",
+        "List of courses for 3rd year",
+        "3rd year syllabus details",
+        "What is on the 3rd year timetable",
+        "Courses for final year students",
+        "Schedule for the last year",
+        "Third year program structure",
+        "Where is the third year curriculum",
+        "Curriculum for 3rd year",
+        "What is the 3rd year schedule"
+      ],
+      "response": [
+        "Here is the schedule for 3rd year."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "3rd_year_schedule.pdf",
+        "name": "3rd Year Program Schedule"
+      }
+    },
+    {
+      "tag": "specialties_number",
+      "patterns": [
+        "How many specialties does ESTIN have",
+        "What are the specialities offered",
+        "List of all ESTIN specialties",
+        "Tell me about the degree tracks",
+        "How many tracks are there in the university",
+        "What are the options for specialization",
+        "Available specialities at ESTIN",
+        "What degrees can I specialize in",
+        "Information on university specialties",
+        "Which specialization options are there",
+        "How many majors does ESTIN offer",
+        "What are the three specialities",
+        "Name all the specializations",
+        "Details on ESTIN specialities",
+        "What are the fields of study",
+        "How many study areas are at ESTIN",
+        "List the specialties",
+        "What can I specialize in",
+        "Specialization options at ESTIN",
+        "Tell me the number of specialties"
+      ],
+      "response": [
+        "ESTIN has 3 specialities: Data Science & Artificial Intelligence, Cyber Security and IoT"
+      ],
+      "file": null
+    },
+    {
+      "tag": "academic_calendar_pdf",
+      "patterns": [
+        "Where is the academic calendar pdf",
+        "Link to the official academic calendar",
+        "Download the academic calendar",
+        "Show me the academic year dates document",
+        "I need the official calendar",
+        "Where can I find the academic calendar",
+        "Give me the pdf for the school calendar",
+        "Latest academic calendar link",
+        "Access the academic calendar",
+        "Can I have the academic calendar file",
+        "Download official academic calendar",
+        "Link to the official calendar document",
+        "Send me the academic calendar",
+        "Academic year schedule pdf",
+        "Official university calendar file",
+        "Where is the official academic calendar posted",
+        "I need the full academic calendar",
+        "Show me the calendar pdf",
+        "Academic calendar document",
+        "Official schedule of academic dates"
+      ],
+      "response": [
+        "Here is the official academic calendar."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "academic_calendar.pdf",
+        "name": "Academic Calendar"
+      }
+    },
+    {
+      "tag": "course_catalog_pdf",
+      "patterns": [
+        "Where is the course catalog pdf",
+        "Link to the complete course catalog",
+        "Download the course catalog",
+        "Show me the catalog of all courses",
+        "I need the official course catalog",
+        "Where can I find the course catalog",
+        "Give me the pdf for the course catalog",
+        "Latest course catalog link",
+        "Access the course catalog",
+        "Can I have the course catalog file",
+        "Download complete course catalog",
+        "Link to the course list document",
+        "Send me the course catalog",
+        "University course catalog pdf",
+        "Official course list file",
+        "Where is the complete course catalog posted",
+        "I need the full list of courses",
+        "Show me the course catalog pdf",
+        "Course catalog document",
+        "Official guide to courses"
+      ],
+      "response": [
+        "Here is the complete course catalog."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "course_catalog.pdf",
+        "name": "Course Catalog"
+      }
+    },
+    {
+      "tag": "exam_schedule_pdf",
+      "patterns": [
+        "Where is the exam schedule pdf",
+        "Link to the exam schedule",
+        "Download the exam timetable",
+        "Show me the examination schedule document",
+        "I need the official exam schedule",
+        "Where can I find the exam schedule",
+        "Give me the pdf for the exam schedule",
+        "Latest exam timetable link",
+        "Access the exam schedule",
+        "Can I have the exam schedule file",
+        "Download exam schedule",
+        "Link to the examination dates document",
+        "Send me the exam schedule",
+        "University exam dates pdf",
+        "Official exam timetable file",
+        "Where is the official exam schedule posted",
+        "I need the full exam timetable",
+        "Show me the exam schedule pdf",
+        "Exam schedule document",
+        "Official examination dates"
+      ],
+      "response": [
+        "Here is the exam schedule."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "exam_schedule.pdf",
+        "name": "Exam Schedule"
+      }
+    },
+    {
+      "tag": "registration_guide_pdf",
+      "patterns": [
+        "Where is the registration guide pdf",
+        "Link to the registration guide",
+        "Download the registration instructions",
+        "Show me the registration guide document",
+        "I need the official registration guide",
+        "Where can I find the registration guide",
+        "Give me the pdf for the registration guide",
+        "Latest registration guide link",
+        "Access the registration guide",
+        "Can I have the registration guide file",
+        "Download registration guide",
+        "Link to the enrollment procedure document",
+        "Send me the registration guide",
+        "University registration process pdf",
+        "Official enrollment guide file",
+        "Where is the official registration guide posted",
+        "I need the full registration steps",
+        "Show me the registration guide pdf",
+        "Registration guide document",
+        "Official registration process instructions"
+      ],
+      "response": [
+        "Here is the registration guide."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "registration_guide.pdf",
+        "name": "Registration Guide"
+      }
+    },
+    {
+      "tag": "student_handbook_pdf",
+      "patterns": [
+        "Where is the student handbook pdf",
+        "Link to the student handbook",
+        "Download the student manual",
+        "Show me the student handbook document",
+        "I need the official student handbook",
+        "Where can I find the student handbook",
+        "Give me the pdf for the student handbook",
+        "Latest student handbook link",
+        "Access the student manual",
+        "Can I have the student handbook file",
+        "Download student handbook",
+        "Link to the student rules document",
+        "Send me the student handbook",
+        "University student policies pdf",
+        "Official student guide file",
+        "Where is the official student handbook posted",
+        "I need the full student rules",
+        "Show me the student handbook pdf",
+        "Student handbook document",
+        "Official student information guide"
+      ],
+      "response": [
+        "Here is the student handbook."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "student_handbook.pdf",
+        "name": "Student Handbook"
+      }
+    },
+    {
+      "tag": "library_weekend",
+      "patterns": [
+        "What are the library hours on weekends",
+        "Is the library open on Saturday or Sunday",
+        "Weekend library schedule",
+        "Library opening hours during the weekend",
+        "Weekend operating times for the library",
+        "When is the library open on weekends",
+        "Saturday library time",
+        "Sunday library hours",
+        "Can I study in the library on weekends",
+        "Library weekend hours",
+        "What time does the library open and close on weekends",
+        "Weekend schedule for the ESTIN library",
+        "Library hours during non-weekday",
+        "Is the library accessible on days off",
+        "What's the library schedule for Saturday and Sunday",
+        "Weekend operating schedule",
+        "Library time on the weekend",
+        "Opening and closing times for the library on weekends",
+        "Does the library operate on weekends",
+        "What are the library weekend hours"
+      ],
+      "response": [
+        "The library is open on weekends from 9:00 AM to 8:00 PM"
+      ],
+      "file": null
+    },
+    {
+      "tag": "exam_period",
+      "patterns": [
+        "When is the exam period",
+        "What are the dates for exams this semester",
+        "When do exams start and end",
+        "Duration of the examination period",
+        "Dates of the semester exams",
+        "What is the exam schedule timeframe",
+        "When is the upcoming exam period",
+        "Start and end date of the exams",
+        "Exam period this year",
+        "Tell me the examination dates",
+        "When does the exam session take place",
+        "What are the exam dates",
+        "Exam semester period",
+        "When is the next exam period",
+        "From when to when are the exams",
+        "Examination session dates",
+        "Schedule for the exam period",
+        "When are the final exams",
+        "Exam weeks for this semester",
+        "What is the date range for exams"
+      ],
+      "response": [
+        "The exam period for this semester is from January 15th to January 30th"
+      ],
+      "file": null
+    },
+    {
+      "tag": "registration_deadline",
+      "patterns": [
+        "What is the registration deadline",
+        "When does registration for the next semester end",
+        "Last day for semester registration",
+        "Deadline for next semester enrollment",
+        "When is the final date to register",
+        "Registration closing date",
+        "What date does registration finish",
+        "When do I have to register by",
+        "Semester registration deadline",
+        "Latest day for enrollment",
+        "When is the last chance to register",
+        "Registration must be completed by",
+        "What's the registration cut-off date",
+        "Final day for student registration",
+        "Registration end date",
+        "Next semester registration deadline",
+        "When does the enrollment period close",
+        "Deadline for course registration",
+        "What's the last day for fees payment and registration",
+        "When does the registration close"
+      ],
+      "response": [
+        "Registration for the next semester ends on February 10th"
+      ],
+      "file": null
+    },
+    {
+      "tag": "tuition_fees",
+      "patterns": [
+        "What are the tuition fees",
+        "How much does university cost",
+        "Annual fees for students",
+        "What is the price of tuition",
+        "ESTIN university fees structure",
+        "How much is tuition for international students",
+        "Cost for national students",
+        "How much do I have to pay for the year",
+        "Details on annual tuition fees",
+        "What is the tuition amount",
+        "University annual tuition fees",
+        "Tuition cost for ESTIN",
+        "How much is the school fee",
+        "Fees for international students",
+        "National student tuition fee",
+        "Breakdown of tuition fees",
+        "What is the cost of attendance",
+        "Fee structure for a year of study",
+        "How much are the university fees",
+        "What are the tuition fees for students"
+      ],
+      "response": [
+        "Annual tuition fees are 45,000 DZD for national students and 90,000 DZD for international students"
+      ],
+      "file": null
+    },
+    {
+      "tag": "scholarship_info",
+      "patterns": [
+        "When are scholarship applications open",
+        "How do I apply for a scholarship",
+        "Information about scholarships",
+        "When is the scholarship deadline",
+        "Tell me about financial aid",
+        "Scholarship application dates",
+        "When can I apply for a scholarship",
+        "Financial aid office contact",
+        "What is the scholarship window",
+        "Details on scholarship application process",
+        "When does the scholarship period end",
+        "Dates for scholarship submission",
+        "Where to get scholarship details",
+        "Scholarship opening and closing dates",
+        "How to apply for financial assistance",
+        "When are scholarship applications available",
+        "Deadline for financial aid",
+        "I need scholarship information",
+        "Contact for scholarship support",
+        "When can I submit my scholarship application"
+      ],
+      "response": [
+        "Scholarship applications are open from September 1st to September 30th. Contact the financial aid office for more details"
+      ],
+      "file": null
+    },
+    {
+      "tag": "academic_calendar",
+      "patterns": [
+        "How is the academic year divided",
+        "What are the university semesters",
+        "Academic year structure",
+        "When do the semesters start and end",
+        "Information on the academic year timeline",
+        "Semester details at ESTIN",
+        "When is the Fall semester",
+        "When is the Spring semester",
+        "Tell me about the academic calendar months",
+        "What are the periods in the academic year",
+        "How long are the semesters",
+        "Academic year division",
+        "Semester dates",
+        "What months are in the academic year",
+        "When does the academic year start and finish",
+        "What is the structure of the school year",
+        "Fall semester months",
+        "Spring semester months",
+        "Academic year schedule overview",
+        "ESTIN semester system"
+      ],
+      "response": [
+        "The academic year is divided into two semesters: Fall (September-January) and Spring (February-June)"
+      ],
+      "file": null
+    },
+    {
+      "tag": "it_department",
+      "patterns": [
+        "Where is the IT department located",
+        "Contact email for IT support",
+        "Location of the IT office",
+        "Where is the tech support office",
+        "How do I contact the IT department",
+        "IT department address",
+        "Location of the computing services office",
+        "Contact details for IT support",
+        "Where is Block B, 2nd floor",
+        "I need the IT department email",
+        "Find the IT department",
+        "What is the IT department's contact",
+        "Location of the network support office",
+        "IT support email address",
+        "Where is the place for technical issues",
+        "ESTIN IT department location",
+        "Contact for technical support",
+        "Email to reach the IT staff",
+        "Where is the help desk",
+        "Location and contact for IT"
+      ],
+      "response": [
+        "The IT department is located in Block B, 2nd floor. Contact: it-support@estin.dz"
+      ],
+      "file": null
+    },
+    {
+      "tag": "student_clubs",
+      "patterns": [
+        "What student clubs are available at ESTIN",
+        "List of all student clubs",
+        "Clubs and societies at the university",
+        "Tell me about the student clubs",
+        "What clubs can I join",
+        "Name all student clubs",
+        "Clubs available for students",
+        "Does ESTIN have a robotics club",
+        "Information on the programming club",
+        "Are there any debate clubs",
+        "List of university clubs",
+        "What are the sports clubs",
+        "Clubs and activities for students",
+        "What extracurricular activities are there",
+        "How many clubs does ESTIN have",
+        "Tell me about the student organizations",
+        "Details on student clubs",
+        "Where can I find a list of clubs",
+        "Clubs I can join at ESTIN",
+        "What are the official student clubs"
+      ],
+      "response": [
+        "ESTIN has various clubs: Programming Club, Robotics Club, Debate Club, and Sports Club"
+      ],
+      "file": null
+    },
+    {
+      "tag": "wifi_access",
+      "patterns": [
+        "How do I access the campus WiFi",
+        "What is the WiFi network name",
+        "How to connect to ESTIN WiFi",
+        "What are the WiFi access instructions",
+        "I need to connect to the internet",
+        "WiFi login details",
+        "Network access for students",
+        "How to get WiFi access",
+        "Troubleshooting WiFi issues",
+        "What are my WiFi credentials",
+        "Information on campus internet access",
+        "Name of the university WiFi",
+        "How to use student ID for WiFi",
+        "What to do if I have WiFi issues",
+        "Campus network connection details",
+        "How can I log into the WiFi",
+        "What is the WiFi password/username",
+        "WiFi connection guide",
+        "Details on ESTIN-WiFi",
+        "I can't connect to the WiFi"
+      ],
+      "response": [
+        "WiFi access: Connect to 'ESTIN-WiFi' using your student credentials. For issues, contact IT support"
+      ],
+      "file": null
+    },
+    {
+      "tag": "transcript_request",
+      "patterns": [
+        "How do I request a transcript",
+        "Steps to get my academic transcript",
+        "Where to ask for a transcript",
+        "Transcript request procedure",
+        "How long does it take to get a transcript",
+        "Processing time for academic transcripts",
+        "I need my transcript",
+        "Where to submit a transcript request",
+        "What documents do I need for a transcript",
+        "Transcript request details",
+        "How to get a copy of my grades",
+        "Time taken to process transcript",
+        "Administration office transcript request",
+        "What is the procedure for transcript",
+        "Transcript processing duration",
+        "How to request academic record",
+        "Where to go for my official transcript",
+        "I want to order a transcript",
+        "What do I need for a transcript request",
+        "Can I get my transcript quickly"
+      ],
+      "response": [
+        "To request a transcript, visit the administration office with your student ID. Processing time is 3-5 days"
+      ],
+      "file": null
+    },
+    {
+      "tag": "id_card_loss",
+      "patterns": [
+        "What if I lose my student ID card",
+        "I lost my student ID",
+        "How to replace a lost ID card",
+        "Replacement fee for student ID",
+        "What is the procedure for a lost ID",
+        "Cost to replace my student card",
+        "Who do I report a lost ID to",
+        "Lost student card replacement fee",
+        "How to get a new ID card",
+        "Student ID lost and found",
+        "What's the fine for a lost ID",
+        "Where to report a missing student ID",
+        "ID card replacement process",
+        "I need a new student ID",
+        "Lost ID card fee",
+        "Report a lost student ID",
+        "What happens if I lose my card",
+        "How much is a replacement student ID",
+        "Procedure for damaged ID card",
+        "I've misplaced my student ID"
+      ],
+      "response": [
+        "If you lose your student ID, report immediately to the administration office. Replacement fee: 500 DZD"
+      ],
+      "file": null
+    },
+    {
+      "tag": "parking_info",
+      "patterns": [
+        "Where is student parking available",
+        "Parking information for students",
+        "Do I need a parking permit",
+        "Where is the west parking lot",
+        "How to get a parking permit",
+        "Details on student parking",
+        "Where can students park their cars",
+        "Is there a student parking lot",
+        "Parking location on campus",
+        "Information about campus parking",
+        "How to obtain a parking permit",
+        "Where to get the parking pass",
+        "Student parking area",
+        "Where is the security office for parking",
+        "Do I need a permit to park",
+        "Parking rules for students",
+        "Where is the student parking located",
+        "Parking permit requirements",
+        "How can I park my car",
+        "Parking lot location"
+      ],
+      "response": [
+        "Student parking is available in the west parking lot. Parking permit required - get it from security office"
+      ],
+      "file": null
+    },
+    {
+      "tag": "cafeteria_hours",
+      "patterns": [
+        "What are the cafeteria hours",
+        "When is the cafeteria open and closed",
+        "Cafeteria schedule",
+        "What time is breakfast served",
+        "Lunch hours in the cafeteria",
+        "When can I get snacks at the cafeteria",
+        "Cafeteria operating times",
+        "Hours for the university cafeteria",
+        "When does the cafeteria close",
+        "What time is dinner/supper",
+        "Cafeteria open times",
+        "When is lunch available",
+        "Breakfast service hours",
+        "Cafeteria daily schedule",
+        "What are the opening times for the cafeteria",
+        "Snack hours at the university",
+        "When is the best time for lunch",
+        "Cafeteria service schedule",
+        "What time does the cafeteria start",
+        "Food service hours"
+      ],
+      "response": [
+        "Cafeteria hours: 7:00 AM - 7:00 PM. Breakfast: 7-10 AM, Lunch: 11 AM-2 PM, Snacks: 2-7 PM"
+      ],
+      "file": null
+    },
+    {
+      "tag": "sports_facilities",
+      "patterns": [
+        "What sports facilities are available",
+        "When are the sports facilities open",
+        "Hours for the gym and courts",
+        "What sports facilities does ESTIN have",
+        "Operating hours for the sports complex",
+        "Can I use the basketball court",
+        "When does the gym open and close",
+        "Sports facilities schedule",
+        "Access times for sports grounds",
+        "Information on the football field",
+        "What time can I use the gym",
+        "Sports area hours",
+        "List of available sports facilities",
+        "When do the sports facilities close",
+        "Can I access the gym now",
+        "Opening hours for the sports center",
+        "Are the sports facilities open late",
+        "What are the gym hours",
+        "When can I play basketball",
+        "Access to the football field"
+      ],
+      "response": [
+        "Sports facilities include a gym, basketball court, and football field. Open from 6:00 AM to 10:00 PM"
+      ],
+      "file": null
+    },
+    {
+      "tag": "professor_office",
+      "patterns": [
+        "How do I find professor office hours",
+        "Where are the professor office times posted",
+        "When are professor's available for consultation",
+        "Office hours for faculty members",
+        "How to check my professor's office hours",
+        "Where can I see faculty availability",
+        "Tell me about professor meeting times",
+        "Where are the office hours written",
+        "Professor consultation times",
+        "How to schedule a meeting with a professor",
+        "Faculty office hour information",
+        "When are professors available for students"
+      ],
+      "response": [
+        "Professor office hours are usually posted outside the faculty offices or available on the course learning platform. Check your specific course page for details."
+      ],
+      "file": null
+    }
+  ]
+}

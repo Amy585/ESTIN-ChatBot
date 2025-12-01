@@ -1,12 +1,21 @@
-# Python
-venv/
+# IDE/OS Generated files
+.DS_Store
+*.swp
 
-# Environment files
+
+# Python environment and cache
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Sensitive Data and Local Configuration (CRITICAL)
 .env
 
-
-# Node / React
-frontend/node_modules/
-frontend/dist/
-frontend/.env
-
+# Flask/Database Files (CRITICAL to ignore)
+instance/
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
