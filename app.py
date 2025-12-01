@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 secret_key = os.environ.get('SECRET_KEY')
 if not secret_key:
-    # 🚨 Production Safety Check
+    # Production Safety Check
     if app.env == 'production':
         raise ValueError("FATAL ERROR: SECRET_KEY environment variable must be set in production.")
     else:
