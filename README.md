@@ -25,9 +25,9 @@ The chatbot uses a **Feedforward Neural Network (FNN)** to classify user intent 
 ## 2. Features
 
 * **Intent Recognition:** Classifies user queries (e.g., "greeting," "library\_opening," "exam\_schedule") using a trained neural network.
-* **Rule-Based Responses:** Provides static answers for common queries (hours, fees, deadlines).
+* **Rule-Based Responses:** Provides static answers for common queries (hours, fees, deadlines). (This is an old version and is not the one that's currently served on the web interface)
 * **File Serving:** Serves static academic resources like semester schedules and administrative PDFs directly to the user interface.
-* **Modular Design:** Separates the Flask application (`app.py`), neural network logic (`neural_chat_engine.py`), and data (`faq_data.json`).
+* **Modular Design:** Separates the Flask application (`app.py`), neural network logic (`chat.py`), and data (`faq_data.json`).
 
 ---
 
@@ -87,4 +87,4 @@ The model is trained based on the data in `faq_data.json`. The trained weights a
 If you update the `faq_data.json` file (add new intents, patterns, or responses), you must retrain the model:
 
 ```bash
-python neural_chat_engine.py
+python chat.py
