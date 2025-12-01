@@ -1,0 +1,13 @@
+# IDE/OS Generated files
+.DS_Store
+*.swp
+*.bak
+
+# Python environment and cache
+__pycache__/
+*.pyc
+venv/
+.venv/
+/htmlcov/
+
+.env

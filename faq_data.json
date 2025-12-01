@@ -24,7 +24,10 @@
         "I'm new here",
         "ESTIN bot, are you active"
       ],
-      "response": "Hello! Welcome to ESTIN University Assistant! How can I help you today?"
+      "response": [
+        "Hello! Welcome to ESTIN University Assistant! How can I help you today?"
+      ],
+      "file": null
     },
     {
       "tag": "greeting_hi",
@@ -50,7 +53,10 @@
         "Hey bot, let's go",
         "Hi, ESTIN University"
       ],
-      "response": "Hi there! I'm here to help with any questions about ESTIN University. What do you need to know?"
+      "response": [
+        "Hi there! I'm here to help with any questions about ESTIN University. What do you need to know?"
+      ],
+      "file": null
     },
     {
       "tag": "greeting_how_are_you",
@@ -76,7 +82,10 @@
         "What's going on with you",
         "How is your operation"
       ],
-      "response": "I'm doing great, thank you! Ready to help you with ESTIN-related questions. What can I assist you with?"
+      "response": [
+        "I'm doing great, thank you! Ready to help you with ESTIN-related questions. What can I assist you with?"
+      ],
+      "file": null
     },
     {
       "tag": "greeting_goodbye",
@@ -102,7 +111,10 @@
         "I finished my questions",
         "End session"
       ],
-      "response": "Goodbye! Feel free to come back if you have more questions about ESTIN!"
+      "response": [
+        "Goodbye! Feel free to come back if you have more questions about ESTIN!"
+      ],
+      "file": null
     },
     {
       "tag": "library_opening",
@@ -128,7 +140,10 @@
         "University library opens at what time",
         "What is the earliest I can go to the library"
       ],
-      "response": "The library opens at 8:00 am"
+      "response": [
+        "The library opens at 8:00 am"
+      ],
+      "file": null
     },
     {
       "tag": "library_closing",
@@ -154,7 +169,10 @@
         "University library closes at what time",
         "What is the latest I can stay in the library"
       ],
-      "response": "The library closes at 11:00 pm"
+      "response": [
+        "The library closes at 11:00 pm"
+      ],
+      "file": null
     },
     {
       "tag": "courses_start",
@@ -180,7 +198,10 @@
         "Time for first course",
         "Classes begin at"
       ],
-      "response": "Courses start at 8:30 am"
+      "response": [
+        "Courses start at 8:30 am"
+      ],
+      "file": null
     },
     {
       "tag": "last_session",
@@ -206,7 +227,10 @@
         "When are all the courses done for the day",
         "Class finish time"
       ],
-      "response": "The last session ends at 4:30 pm"
+      "response": [
+        "The last session ends at 4:30 pm"
+      ],
+      "file": null
     },
     {
       "tag": "administration_hours",
@@ -232,7 +256,10 @@
         "Administration operating hours",
         "When are the administrative services available"
       ],
-      "response": "The administration is available on Sunday, Tuesday and Thursday from 8:30 AM to 3:30 PM"
+      "response": [
+        "The administration is available on Sunday, Tuesday and Thursday from 8:30 AM to 3:30 PM"
+      ],
+      "file": null
     },
     {
       "tag": "second_year_program",
@@ -258,7 +285,14 @@
         "Curriculum for 2CS 1st semester",
         "What is the 2CS schedule"
       ],
-      "response": "Here is the schedule for 2CS 1st semester:"
+      "response": [
+        "Here is the schedule for 2CS 1st semester."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "2cs_schedule.pdf",
+        "name": "2CS Program Schedule"
+      }
     },
     {
       "tag": "first_year_program",
@@ -284,7 +318,14 @@
         "Curriculum for 1st year",
         "What is the 1st year schedule"
       ],
-      "response": "Here is the schedule for 1st year:"
+      "response": [
+        "Here is the schedule for 1st year."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "1st_year_schedule.pdf",
+        "name": "1st Year Program Schedule"
+      }
     },
     {
       "tag": "third_year_program",
@@ -310,7 +351,14 @@
         "Curriculum for 3rd year",
         "What is the 3rd year schedule"
       ],
-      "response": "Here is the schedule for 3rd year:"
+      "response": [
+        "Here is the schedule for 3rd year."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "3rd_year_schedule.pdf",
+        "name": "3rd Year Program Schedule"
+      }
     },
     {
       "tag": "specialties_number",
@@ -336,7 +384,10 @@
         "Specialization options at ESTIN",
         "Tell me the number of specialties"
       ],
-      "response": "ESTIN has 3 specialities: Data Science & Artificial Intelligence, Cyber Security and IoT"
+      "response": [
+        "ESTIN has 3 specialities: Data Science & Artificial Intelligence, Cyber Security and IoT"
+      ],
+      "file": null
     },
     {
       "tag": "academic_calendar_pdf",
@@ -362,7 +413,14 @@
         "Academic calendar document",
         "Official schedule of academic dates"
       ],
-      "response": "Here is the official academic calendar:"
+      "response": [
+        "Here is the official academic calendar."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "academic_calendar.pdf",
+        "name": "Academic Calendar"
+      }
     },
     {
       "tag": "course_catalog_pdf",
@@ -388,7 +446,14 @@
         "Course catalog document",
         "Official guide to courses"
       ],
-      "response": "Here is the complete course catalog:"
+      "response": [
+        "Here is the complete course catalog."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "course_catalog.pdf",
+        "name": "Course Catalog"
+      }
     },
     {
       "tag": "exam_schedule_pdf",
@@ -414,7 +479,14 @@
         "Exam schedule document",
         "Official examination dates"
       ],
-      "response": "Here is the exam schedule:"
+      "response": [
+        "Here is the exam schedule."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "exam_schedule.pdf",
+        "name": "Exam Schedule"
+      }
     },
     {
       "tag": "registration_guide_pdf",
@@ -440,7 +512,14 @@
         "Registration guide document",
         "Official registration process instructions"
       ],
-      "response": "Here is the registration guide:"
+      "response": [
+        "Here is the registration guide."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "registration_guide.pdf",
+        "name": "Registration Guide"
+      }
     },
     {
       "tag": "student_handbook_pdf",
@@ -466,7 +545,14 @@
         "Student handbook document",
         "Official student information guide"
       ],
-      "response": "Here is the student handbook:"
+      "response": [
+        "Here is the student handbook."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "student_handbook.pdf",
+        "name": "Student Handbook"
+      }
     },
     {
       "tag": "library_weekend",
@@ -492,7 +578,10 @@
         "Does the library operate on weekends",
         "What are the library weekend hours"
       ],
-      "response": "The library is open on weekends from 9:00 AM to 8:00 PM"
+      "response": [
+        "The library is open on weekends from 9:00 AM to 8:00 PM"
+      ],
+      "file": null
     },
     {
       "tag": "exam_period",
@@ -518,7 +607,10 @@
         "Exam weeks for this semester",
         "What is the date range for exams"
       ],
-      "response": "The exam period for this semester is from January 15th to January 30th"
+      "response": [
+        "The exam period for this semester is from January 15th to January 30th"
+      ],
+      "file": null
     },
     {
       "tag": "registration_deadline",
@@ -544,7 +636,10 @@
         "What's the last day for fees payment and registration",
         "When does the registration close"
       ],
-      "response": "Registration for the next semester ends on February 10th"
+      "response": [
+        "Registration for the next semester ends on February 10th"
+      ],
+      "file": null
     },
     {
       "tag": "tuition_fees",
@@ -570,7 +665,10 @@
         "How much are the university fees",
         "What are the tuition fees for students"
       ],
-      "response": "Annual tuition fees are 45,000 DZD for national students and 90,000 DZD for international students"
+      "response": [
+        "Annual tuition fees are 45,000 DZD for national students and 90,000 DZD for international students"
+      ],
+      "file": null
     },
     {
       "tag": "scholarship_info",
@@ -596,7 +694,10 @@
         "Contact for scholarship support",
         "When can I submit my scholarship application"
       ],
-      "response": "Scholarship applications are open from September 1st to September 30th. Contact the financial aid office for more details"
+      "response": [
+        "Scholarship applications are open from September 1st to September 30th. Contact the financial aid office for more details"
+      ],
+      "file": null
     },
     {
       "tag": "academic_calendar",
@@ -622,7 +723,10 @@
         "Academic year schedule overview",
         "ESTIN semester system"
       ],
-      "response": "The academic year is divided into two semesters: Fall (September-January) and Spring (February-June)"
+      "response": [
+        "The academic year is divided into two semesters: Fall (September-January) and Spring (February-June)"
+      ],
+      "file": null
     },
     {
       "tag": "it_department",
@@ -648,7 +752,10 @@
         "Where is the help desk",
         "Location and contact for IT"
       ],
-      "response": "The IT department is located in Block B, 2nd floor. Contact: it-support@estin.dz"
+      "response": [
+        "The IT department is located in Block B, 2nd floor. Contact: it-support@estin.dz"
+      ],
+      "file": null
     },
     {
       "tag": "student_clubs",
@@ -674,7 +781,10 @@
         "Clubs I can join at ESTIN",
         "What are the official student clubs"
       ],
-      "response": "ESTIN has various clubs: Programming Club, Robotics Club, Debate Club, and Sports Club"
+      "response": [
+        "ESTIN has various clubs: Programming Club, Robotics Club, Debate Club, and Sports Club"
+      ],
+      "file": null
     },
     {
       "tag": "wifi_access",
@@ -700,7 +810,10 @@
         "Details on ESTIN-WiFi",
         "I can't connect to the WiFi"
       ],
-      "response": "WiFi access: Connect to 'ESTIN-WiFi' using your student credentials. For issues, contact IT support"
+      "response": [
+        "WiFi access: Connect to 'ESTIN-WiFi' using your student credentials. For issues, contact IT support"
+      ],
+      "file": null
     },
     {
       "tag": "transcript_request",
@@ -726,7 +839,10 @@
         "What do I need for a transcript request",
         "Can I get my transcript quickly"
       ],
-      "response": "To request a transcript, visit the administration office with your student ID. Processing time is 3-5 days"
+      "response": [
+        "To request a transcript, visit the administration office with your student ID. Processing time is 3-5 days"
+      ],
+      "file": null
     },
     {
       "tag": "id_card_loss",
@@ -752,7 +868,10 @@
         "Procedure for damaged ID card",
         "I've misplaced my student ID"
       ],
-      "response": "If you lose your student ID, report immediately to the administration office. Replacement fee: 500 DZD"
+      "response": [
+        "If you lose your student ID, report immediately to the administration office. Replacement fee: 500 DZD"
+      ],
+      "file": null
     },
     {
       "tag": "parking_info",
@@ -778,7 +897,10 @@
         "How can I park my car",
         "Parking lot location"
       ],
-      "response": "Student parking is available in the west parking lot. Parking permit required - get it from security office"
+      "response": [
+        "Student parking is available in the west parking lot. Parking permit required - get it from security office"
+      ],
+      "file": null
     },
     {
       "tag": "cafeteria_hours",
@@ -804,7 +926,10 @@
         "What time does the cafeteria start",
         "Food service hours"
       ],
-      "response": "Cafeteria hours: 7:00 AM - 7:00 PM. Breakfast: 7-10 AM, Lunch: 11 AM-2 PM, Snacks: 2-7 PM"
+      "response": [
+        "Cafeteria hours: 7:00 AM - 7:00 PM. Breakfast: 7-10 AM, Lunch: 11 AM-2 PM, Snacks: 2-7 PM"
+      ],
+      "file": null
     },
     {
       "tag": "sports_facilities",
@@ -830,7 +955,10 @@
         "When can I play basketball",
         "Access to the football field"
       ],
-      "response": "Sports facilities include a gym, basketball court, and football field. Open from 6:00 AM to 10:00 PM"
+      "response": [
+        "Sports facilities include a gym, basketball court, and football field. Open from 6:00 AM to 10:00 PM"
+      ],
+      "file": null
     },
     {
       "tag": "professor_office",
@@ -846,199 +974,12 @@
         "Professor consultation times",
         "How to schedule a meeting with a professor",
         "Faculty office hour information",
-        "When are professors available for students",
-        "Where can I find the list of office hours",
-        "Professor availability hours",
-        "Where are the professor schedules",
-        "How do I check a professor's door",
-        "Information on teacher office hours",
-        "When can I meet my professor",
-        "Office hours location",
-        "Where is the department bulletin board"
+        "When are professors available for students"
       ],
-      "response": "Professor office hours are posted on their office doors and the department bulletin boards"
-    },
-    {
-      "tag": "book_rental",
-      "patterns": [
-        "How do I rent textbooks from the library",
-        "What are the rules for book rental",
-        "Maximum number of books I can rent",
-        "How long can I rent a textbook for",
-        "Textbook rental duration",
-        "Library book rental policy",
-        "Can I rent textbooks",
-        "How many books can I borrow",
-        "What's the loan period for books",
-        "Rental limit for library books",
-        "How long is the book rental period",
-        "Details on textbook borrowing",
-        "Library rental procedure",
-        "Can I rent more than 3 books",
-        "Rental period for textbooks",
-        "How long can I keep the rented books",
-        "Rules for borrowing textbooks",
-        "Library book limit",
-        "What is the maximum rental time",
-        "How many weeks can I rent books"
+      "response": [
+        "Professor office hours are usually posted outside the faculty offices or available on the course learning platform. Check your specific course page for details."
       ],
-      "response": "Textbook rental is available at the library. Maximum 3 books for 2 weeks"
-    },
-    {
-      "tag": "graduation_requirements",
-      "patterns": [
-        "What are the graduation requirements",
-        "What do I need to graduate",
-        "Minimum GPA for graduation",
-        "Requirements for getting my degree",
-        "What are the steps to finish university",
-        "Do I need to pay all fees before graduating",
-        "Graduation requirements checklist",
-        "What's the minimum GPA needed",
-        "Conditions for graduation",
-        "What is required to complete the program",
-        "Do I need to clear all my dues",
-        "Degree completion requirements",
-        "What are the necessary steps for graduation",
-        "Checklist for final year students",
-        "What GPA is required for graduation",
-        "Do I need to complete all my courses",
-        "What fees must be paid for graduation",
-        "Graduation criteria",
-        "Requirements for obtaining my diploma",
-        "How to ensure I meet graduation requirements"
-      ],
-      "response": "Graduation requires completing all courses, minimum GPA of 2.0, and no outstanding fees"
-    },
-    {
-      "tag": "internship_opportunities",
-      "patterns": [
-        "Where can I find internship opportunities",
-        "Are there any internship listings",
-        "How to find an internship",
-        "What is the career portal",
-        "Who to contact for internship guidance",
-        "Where are internship opportunities posted",
-        "Information on student internships",
-        "Contact for career office",
-        "How can I find a university internship",
-        "Internship postings location",
-        "Guidance for finding internships",
-        "Where can I look for student work experience",
-        "Career office contact for internships",
-        "Internship search details",
-        "How do I get an internship",
-        "Opportunities for student placements",
-        "Internship job listings",
-        "Where is the career portal located",
-        "Who can help me with my internship search",
-        "Are there any available internships"
-      ],
-      "response": "Internship opportunities are posted on the career portal. Contact the career office for guidance"
-    },
-    {
-      "tag": "coding_club",
-      "patterns": [
-        "When does the Coding Club meet",
-        "Where is the Coding Club meeting room",
-        "Details about the Coding Club meeting",
-        "Coding Club schedule and location",
-        "What time is the Coding Club meeting",
-        "Which room is the Coding Club in",
-        "Meeting time for the Programming Club",
-        "When and where does the Coding Club meet",
-        "Coding club meeting location and day",
-        "Time for coding club on Wednesday",
-        "In which room is the B203",
-        "Coding club meeting information",
-        "When can I attend the Coding Club",
-        "Where is Room B203",
-        "What day does the Coding Club meet",
-        "Coding club meeting hours",
-        "Is the Coding Club meeting today",
-        "Details on the Programming Club meeting",
-        "Meeting details for the Coding Club",
-        "Where and when is the Coding Club"
-      ],
-      "response": "The Coding Club meets every Wednesday at 4:00 PM in Room B203"
-    },
-    {
-      "tag": "contact_email",
-      "patterns": [
-        "What is the email for general inquiries",
-        "Contact email for administration",
-        "What is the IT support email",
-        "Email addresses for ESTIN departments",
-        "How to contact the university via email",
-        "Administration email contact",
-        "General inquiry email",
-        "What is the email for the admin office",
-        "IT department contact email",
-        "Email for technical support",
-        "Official university contact emails",
-        "Send me the list of contact emails",
-        "Contact details for ESTIN",
-        "What is the general information email",
-        "Email to reach the administration",
-        "How to contact IT",
-        "Give me the email addresses",
-        "General inquiry email address",
-        "Who to email for general questions",
-        "Contact email for university services"
-      ],
-      "response": "For general inquiries: info@estin.dz, Administration: admin@estin.dz, IT: support@estin.dz"
-    },
-    {
-      "tag": "holiday_schedule",
-      "patterns": [
-        "When is the next holiday break",
-        "What is the holiday schedule",
-        "Dates for the winter break",
-        "When does the winter holiday start and end",
-        "Information on upcoming university holidays",
-        "Next university break dates",
-        "What are the dates for the next holidays",
-        "When is the school break",
-        "Holiday period schedule",
-        "Next student holidays",
-        "When is the university closed for holidays",
-        "Start and end date of winter break",
-        "Holiday schedule details",
-        "Next period of non-class days",
-        "Upcoming university closure dates",
-        "When is the next academic holiday",
-        "Holiday period timeline",
-        "Dates for the upcoming break",
-        "Tell me about the winter break",
-        "When does the break start"
-      ],
-      "response": "Next holidays: Winter break from December 20th to January 5th"
-    },
-    {
-      "tag": "lab_access",
-      "patterns": [
-        "What are the computer lab hours",
-        "When are the computer labs accessible",
-        "Lab access times",
-        "Do I need my student ID for lab entry",
-        "When do the computer labs open and close",
-        "Access hours for student labs",
-        "Computer lab schedule",
-        "What time can I enter the labs",
-        "Lab operating hours",
-        "When do the labs close for the day",
-        "How long are the computer labs open",
-        "Access to the computing labs",
-        "What time do the labs start operating",
-        "Do I need my ID to get into the lab",
-        "Lab access requirements",
-        "When is the computer lab open until",
-        "Computer lab opening and closing times",
-        "Access times for labs",
-        "When can I use the computer labs",
-        "What is the time frame for lab access"
-      ],
-      "response": "Computer labs are accessible from 8:00 AM to 8:00 PM. Student ID required for entry"
+      "file": null
     }
   ]
 }

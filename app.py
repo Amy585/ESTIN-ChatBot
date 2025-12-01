@@ -6,19 +6,31 @@ import re
 import os
 import secrets
 from datetime import datetime, timedelta, timezone
-from rule_model import ChatbotEngine
+from chat import FNNModel
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY')
 
+secret_key = os.environ.get('SECRET_KEY')
+if not secret_key:
+    # 🚨 Production Safety Check
+    if app.env == 'production':
+        raise ValueError("FATAL ERROR: SECRET_KEY environment variable must be set in production.")
+    else:
+        # Fallback for development if you absolutely must
+        print("Warning: SECRET_KEY not set. Using a temporary key for development.")
+        secret_key = secrets.token_hex(16)
+
+app.secret_key = secret_key
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///estin_chatbot.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-chatbot_engine = ChatbotEngine()
+chatbot_engine = FNNModel()
 
 # User Model
 class User(db.Model):
@@ -159,25 +171,24 @@ def send_message():
     
     user_id = session['user_id']
     user_message = request.json['message']
-    bot_data = chatbot_engine.get_response_with_files(user_message) 
-    bot_response = bot_data['text']    
-    # Save user message to database
-    user_msg = ChatMessage(
-        user_id=user_id,
-        message=user_message,
-        is_user=True
-    )
-    db.session.add(user_msg)
-    
-    # Save bot response to database
-    bot_msg = ChatMessage(
-        user_id=user_id,
-        message=bot_response,
-        is_user=False
-    )
-    db.session.add(bot_msg)
-    
-    db.session.commit()
+    bot_data = chatbot_engine.get_response(user_message) 
+    bot_response = bot_data['text'] 
+
+    try:
+        # Save user message
+        user_msg = ChatMessage(user_id=user_id, message=user_message, is_user=True)
+        db.session.add(user_msg)
+        
+        # Save bot response (text only)
+        bot_msg = ChatMessage(user_id=user_id, message=bot_response, is_user=False)
+        db.session.add(bot_msg)
+        
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Database error during message save: {e}")
+        return jsonify({'error': 'Internal server error while saving chat history'}), 500   
+
     
     response_data = {
         'user_message': user_message,
@@ -186,13 +197,27 @@ def send_message():
     }
     
     # Add image/pdf info if it's a schedule request
-    if bot_data.get('file'):
-        if bot_data['file']['type'] == 'pdf':
-            response_data['pdf'] = bot_data['file']['path']
-        elif bot_data['file']['type'] == 'image':
-            response_data['image'] = bot_data['file']['path']
-        response_data['file_name'] = bot_data['file']['name']
-    
+    file_info = bot_data.get('file')
+    if file_info:
+        file_path = file_info['path']
+        file_type = file_info['type']
+        
+        folder_map = {
+        'pdf': 'documents',  # Use 'documents' for PDFs
+        'image': 'images'
+        }
+
+        folder_name = folder_map.get(file_type)
+
+        # Check file existence (Crucial for security and error prevention)
+        if folder_name and os.path.exists(f"{folder_name}/{file_path}"):
+            if file_type == 'pdf':
+                response_data['pdf'] = file_path
+            elif file_type == 'image':
+                response_data['image'] = file_path
+            
+            response_data['file_name'] = file_info['name']
+
     return jsonify(response_data)
 
 
