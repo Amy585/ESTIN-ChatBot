@@ -1,13 +1,21 @@
 # IDE/OS Generated files
 .DS_Store
 *.swp
-*.bak
+
 
 # Python environment and cache
 __pycache__/
 *.pyc
 venv/
 .venv/
-/htmlcov/
 
+# Sensitive Data and Local Configuration (CRITICAL)
 .env
+
+# Flask/Database Files (CRITICAL to ignore)
+instance/
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
