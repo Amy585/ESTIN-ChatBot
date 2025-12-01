@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: bash -c "conda run -n estin_chatbot_env gunicorn app:app"
