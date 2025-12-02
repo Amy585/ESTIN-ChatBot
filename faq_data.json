@@ -170,7 +170,7 @@
         "What is the latest I can stay in the library"
       ],
       "response": [
-        "The library closes at 11:00 pm"
+        "The library closes at 00:00 pm"
       ],
       "file": null
     },
@@ -262,103 +262,189 @@
       "file": null
     },
     {
-      "tag": "second_year_program",
+      "tag": "schedule_1cp",
       "patterns": [
-        "Show me the 2CS first semester schedule",
-        "What is the program for second year CS",
-        "2CS 1st semester courses",
-        "Schedule for 2nd year students",
-        "Can I see the 2CS semester 1 program",
-        "What are the second year classes",
-        "Program for the second year 1st semester",
-        "2CS curriculum",
-        "What subjects are in 2CS semester one",
-        "Give me the second year program",
-        "Show schedule for 2CS",
-        "List of courses for 2nd year",
-        "2CS semester 1 program details",
-        "What is on the 2nd year timetable",
-        "Courses for 2CS students",
-        "Schedule for the 1st semester of 2CS",
-        "2CS first semester syllabus",
-        "Where is the 2nd year first semester program",
-        "Curriculum for 2CS 1st semester",
-        "What is the 2CS schedule"
+        "What is the schedule for 1CP",
+        "I need the 1st year schedule",
+        "Timetable for common core year 1",
+        "Classes for 1CP students",
+        "Download the 1CP timetable"
       ],
       "response": [
-        "Here is the schedule for 2CS 1st semester."
+        "The schedule for the 1st year (1CP) is available for download as a PDF."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "1cp_schedule.pdf",
+        "name": "1st Year (1CP) Program Schedule"
+      }
+    },
+    {
+      "tag": "schedule_2cp",
+      "patterns": [
+        "What is the schedule for 2CP",
+        "I need the 2nd year schedule",
+        "Timetable for common core year 2",
+        "Classes for 2CP students",
+        "Download the 2CP timetable"
+      ],
+      "response": [
+        "The schedule for the 2nd year (2CP) is available for download as a PDF."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "2cp_schedule.pdf",
+        "name": "2nd Year (2CP) Program Schedule"
+      }
+    },
+    {
+      "tag": "schedule_1cs",
+      "patterns": [
+        "What is the schedule for 1CS",
+        "I need the 3rd year schedule",
+        "Timetable for first specialization year",
+        "Classes for 1CS students",
+        "Download the 1CS timetable"
+      ],
+      "response": [
+        "The schedule for the 3rd year (1CS - First Specialization) is available for download as a PDF."
+      ],
+      "file": {
+        "type": "pdf",
+        "path": "1cs_schedule.pdf",
+        "name": "3rd Year (1CS) Program Schedule"
+      }
+    },
+    {
+      "tag": "schedule_2cs",
+      "patterns": [
+        "What is the schedule for 2CS",
+        "I need the 4th year schedule",
+        "Timetable for second specialization year",
+        "Classes for 2CS students",
+        "Download the 2CS timetable"
+      ],
+      "response": [
+        "The schedule for the 4th year (2CS - Second Specialization) is available for download as a PDF."
       ],
       "file": {
         "type": "pdf",
         "path": "2cs_schedule.pdf",
-        "name": "2CS Program Schedule"
+        "name": "4th Year (2CS) Program Schedule"
       }
     },
     {
-      "tag": "first_year_program",
+      "tag": "schedule_3cs",
       "patterns": [
-        "Show me the first year schedule",
-        "What is the program for 1st year",
-        "1st year semester 1 courses",
-        "Schedule for first year students",
-        "Can I see the 1st year program",
-        "What are the first year classes",
-        "Program for the first year",
-        "First year curriculum",
-        "What subjects are in first year",
-        "Give me the first year program",
-        "Show schedule for 1st year",
-        "List of courses for 1st year",
-        "1st year syllabus details",
-        "What is on the 1st year timetable",
-        "Courses for new students",
-        "Schedule for the first semester of 1st year",
-        "First year program structure",
-        "Where is the first year curriculum",
-        "Curriculum for 1st year",
-        "What is the 1st year schedule"
+        "What is the schedule for 3CS",
+        "I need the 5th year schedule",
+        "Timetable for final specialization year",
+        "Classes for 3CS students",
+        "Download the 3CS timetable"
       ],
       "response": [
-        "Here is the schedule for 1st year."
+        "The schedule for the 5th year (3CS - Final Specialization) is available for download as a PDF."
       ],
       "file": {
         "type": "pdf",
-        "path": "1st_year_schedule.pdf",
-        "name": "1st Year Program Schedule"
+        "path": "3cs_schedule.pdf",
+        "name": "5th Year (3CS) Program Schedule"
       }
     },
     {
-      "tag": "third_year_program",
+      "tag": "absence_policy",
       "patterns": [
-        "Show me the third year schedule",
-        "What is the program for 3rd year",
-        "3rd year courses",
-        "Schedule for third year students",
-        "Can I see the 3rd year program",
-        "What are the third year classes",
-        "Program for the third year",
-        "Third year curriculum",
-        "What subjects are in third year",
-        "Give me the third year program",
-        "Show schedule for 3rd year",
-        "List of courses for 3rd year",
-        "3rd year syllabus details",
-        "What is on the 3rd year timetable",
-        "Courses for final year students",
-        "Schedule for the last year",
-        "Third year program structure",
-        "Where is the third year curriculum",
-        "Curriculum for 3rd year",
-        "What is the 3rd year schedule"
+        "How many absences are allowed",
+        "What is the exclusion limit for absences",
+        "Absence policy justification",
+        "What is the maximum number of justified absences",
+        "What happens if I have 3 unjustified absences",
+        "Absence exclusion rule",
+        "How to justify an absence",
+        "Where is the justification form",
+        "What is the policy on justified and unjustified absences",
+        "How many excused absences before exclusion",
+        "What is the maximum number of unexcused absences",
+        "Where do I get the form to justify my absence",
+        "What's the link for the absence justification form",
+        "I need to know the exclusion criteria for class attendance",
+        "Absence limits and rules",
+        "I need to submit a justification",
+        "What are the rules for missing class",
+        "Maximum allowed days missed",
+        "What leads to exclusion",
+        "Form to explain my absence"
       ],
       "response": [
-        "Here is the schedule for 3rd year."
+        "The absence policy is strict: 3 unjustified absences or 5 justified absences lead to exclusion from the course. You must use the official justification form to document your absence. The justification form link is attached here: https://docs.google.com/forms/d/e/1FAIpQLSfhRdIcheqJg0IHVNgCzpjeZfe5bAoppDR-WyGP461CGtXjMg/viewform."
       ],
-      "file": {
-        "type": "pdf",
-        "path": "3rd_year_schedule.pdf",
-        "name": "3rd Year Program Schedule"
-      }
+      "file": null
+    },
+    {
+      "tag": "contact_general",
+      "patterns": [
+        "What is the general contact email for ESTIN",
+        "I need the main phone number for reception",
+        "What is the school's address",
+        "General contact information for the school",
+        "Reception phone number",
+        "Where is ESTIN located",
+        "What is the main email for general inquiries",
+        "How do I reach the reception desk by phone",
+        "What is the official mailing address of ESTIN",
+        "General contact details",
+        "Can I get the school's postal address",
+        "Phone number for the main office",
+        "What is the primary contact email",
+        "ESTIN's location",
+        "How to contact ESTIN"
+      ],
+      "response": [
+        "The school's general contact information is: Address: Route nationale n° 75, Amizour – 06300 Bejaia, Algérie. Email: contact@estin.dz. Reception Phone: 034 82 49 09."
+      ],
+      "file": null
+    },
+    {
+      "tag": "contact_administration",
+      "patterns": [
+        "How to contact the Secretary General",
+        "I need the Secretary General's phone number",
+        "Fax number for the Director's Secretary",
+        "Email for the Secretary General",
+        "Administrative contact details",
+        "What is the Secretary General's contact info",
+        "I need to fax the Director's Secretary",
+        "What is the Secretary General's official email",
+        "Phone number to reach the administration",
+        "How to contact the management office",
+        "Fax number for the administration",
+        "Contact for Le Secrétaire du Directeur",
+        "SG phone number"
+      ],
+      "response": [
+        "Here are the administrative contacts: LE SECRETAIRE DU DIRECTEUR FAX: 034 82 49 16. LA SECRETAIRE GENERALE Téléphone: 034 82 49 07, Email: sg@estin.dz."
+      ],
+      "file": null
+    },
+    {
+      "tag": "service_emails_pdf",
+      "patterns": [
+        "List of service Gmail addresses",
+        "Where can I find the list of departmental emails",
+        "Email addresses for different services",
+        "I need the PDF file with service emails",
+        "Do you have a document listing all service emails",
+        "I need the PDF with departmental emails",
+        "Where is the file with all the service Gmail accounts",
+        "Link to the list of service contact emails",
+        "Can I access the PDF for administrative emails",
+        "Download service emails list",
+        "GMAIL addresses PDF"
+      ],
+      "response": [
+        "The list of Gmail addresses for the different services is available in a PDF file. Please check the attachment below to access this comprehensive list: https://docs.google.com/spreadsheets/d/e/2PACX-1vQWpWTdnZaokOIFlaPLOLuJgkpOYy55pRLW5Y4b8fX9Dn-ZoQcOmMN6vq45qmnKYqAYMLfca1GNKvWX/pubhtml?gid=0&single=true"
+      ],
+      "file": null
     },
     {
       "tag": "specialties_number",
@@ -414,46 +500,30 @@
         "Official schedule of academic dates"
       ],
       "response": [
-        "Here is the official academic calendar."
+        "Here is the official academic calendar: https://docs.google.com/spreadsheets/d/e/2PACX-1vSvW4t84dU0DfkSZoY-QyYBoPIK9BJVI9a6Xp0W1POIjecZsiCWYpUbcumuc1NoEyMe2N-zCyMKGVYK/pubhtml?gid=1784090583&single=true&urp=gmail_link"
       ],
-      "file": {
-        "type": "pdf",
-        "path": "academic_calendar.pdf",
-        "name": "Academic Calendar"
-      }
+      "file": null
     },
     {
-      "tag": "course_catalog_pdf",
+      "tag": "school_internal_regulations",
       "patterns": [
-        "Where is the course catalog pdf",
-        "Link to the complete course catalog",
-        "Download the course catalog",
-        "Show me the catalog of all courses",
-        "I need the official course catalog",
-        "Where can I find the course catalog",
-        "Give me the pdf for the course catalog",
-        "Latest course catalog link",
-        "Access the course catalog",
-        "Can I have the course catalog file",
-        "Download complete course catalog",
-        "Link to the course list document",
-        "Send me the course catalog",
-        "University course catalog pdf",
-        "Official course list file",
-        "Where is the complete course catalog posted",
-        "I need the full list of courses",
-        "Show me the course catalog pdf",
-        "Course catalog document",
-        "Official guide to courses"
+        "What are the internal regulations of the school",
+        "I need the school rules document",
+        "Where can I find the règlement intérieur",
+        "Rules and regulations for students",
+        "Download the ESTIN internal regulations",
+        "What are the rules and policies for campus life",
+        "Internal regulations PDF link",
+        "Where can I read the full school rules",
+        "Règlement Intérieur document link",
+        "I need the rules for students",
+        "Code of conduct for students",
+        "School policy document"
       ],
       "response": [
-        "Here is the complete course catalog."
+        "The complete Internal Regulations (Règlement Intérieur) of the school are available on the official site: https://estin.dz/reglement-interieur/"
       ],
-      "file": {
-        "type": "pdf",
-        "path": "course_catalog.pdf",
-        "name": "Course Catalog"
-      }
+      "file": null
     },
     {
       "tag": "exam_schedule_pdf",
@@ -480,13 +550,9 @@
         "Official examination dates"
       ],
       "response": [
-        "Here is the exam schedule."
+        "The exams schedules will be communicated via gmail."
       ],
-      "file": {
-        "type": "pdf",
-        "path": "exam_schedule.pdf",
-        "name": "Exam Schedule"
-      }
+      "file": null
     },
     {
       "tag": "registration_guide_pdf",
@@ -519,39 +585,6 @@
         "type": "pdf",
         "path": "registration_guide.pdf",
         "name": "Registration Guide"
-      }
-    },
-    {
-      "tag": "student_handbook_pdf",
-      "patterns": [
-        "Where is the student handbook pdf",
-        "Link to the student handbook",
-        "Download the student manual",
-        "Show me the student handbook document",
-        "I need the official student handbook",
-        "Where can I find the student handbook",
-        "Give me the pdf for the student handbook",
-        "Latest student handbook link",
-        "Access the student manual",
-        "Can I have the student handbook file",
-        "Download student handbook",
-        "Link to the student rules document",
-        "Send me the student handbook",
-        "University student policies pdf",
-        "Official student guide file",
-        "Where is the official student handbook posted",
-        "I need the full student rules",
-        "Show me the student handbook pdf",
-        "Student handbook document",
-        "Official student information guide"
-      ],
-      "response": [
-        "Here is the student handbook."
-      ],
-      "file": {
-        "type": "pdf",
-        "path": "student_handbook.pdf",
-        "name": "Student Handbook"
       }
     },
     {
@@ -608,7 +641,7 @@
         "What is the date range for exams"
       ],
       "response": [
-        "The exam period for this semester is from January 15th to January 30th"
+        "The exam period for the first semester is from January 15th to January 30th"
       ],
       "file": null
     },
@@ -642,35 +675,6 @@
       "file": null
     },
     {
-      "tag": "tuition_fees",
-      "patterns": [
-        "What are the tuition fees",
-        "How much does university cost",
-        "Annual fees for students",
-        "What is the price of tuition",
-        "ESTIN university fees structure",
-        "How much is tuition for international students",
-        "Cost for national students",
-        "How much do I have to pay for the year",
-        "Details on annual tuition fees",
-        "What is the tuition amount",
-        "University annual tuition fees",
-        "Tuition cost for ESTIN",
-        "How much is the school fee",
-        "Fees for international students",
-        "National student tuition fee",
-        "Breakdown of tuition fees",
-        "What is the cost of attendance",
-        "Fee structure for a year of study",
-        "How much are the university fees",
-        "What are the tuition fees for students"
-      ],
-      "response": [
-        "Annual tuition fees are 45,000 DZD for national students and 90,000 DZD for international students"
-      ],
-      "file": null
-    },
-    {
       "tag": "scholarship_info",
       "patterns": [
         "When are scholarship applications open",
@@ -695,94 +699,55 @@
         "When can I submit my scholarship application"
       ],
       "response": [
-        "Scholarship applications are open from September 1st to September 30th. Contact the financial aid office for more details"
+        "For scholarship applications details please contact the administration."
       ],
       "file": null
     },
     {
-      "tag": "academic_calendar",
+      "tag": "latest_news",
       "patterns": [
-        "How is the academic year divided",
-        "What are the university semesters",
-        "Academic year structure",
-        "When do the semesters start and end",
-        "Information on the academic year timeline",
-        "Semester details at ESTIN",
-        "When is the Fall semester",
-        "When is the Spring semester",
-        "Tell me about the academic calendar months",
-        "What are the periods in the academic year",
-        "How long are the semesters",
-        "Academic year division",
-        "Semester dates",
-        "What months are in the academic year",
-        "When does the academic year start and finish",
-        "What is the structure of the school year",
-        "Fall semester months",
-        "Spring semester months",
-        "Academic year schedule overview",
-        "ESTIN semester system"
+        "What is the latest news",
+        "Are there any new announcements",
+        "Where can I find school news",
+        "Tell me the most recent updates",
+        "Latest announcements from ESTIN",
+        "What's happening at school this week",
+        "New information posted",
+        "What are the school headlines",
+        "Recent press releases",
+        "News from the administration",
+        "Current school news",
+        "What is the latest update",
+        "Any news today"
       ],
       "response": [
-        "The academic year is divided into two semesters: Fall (September-January) and Spring (February-June)"
-      ],
-      "file": null
-    },
-    {
-      "tag": "it_department",
-      "patterns": [
-        "Where is the IT department located",
-        "Contact email for IT support",
-        "Location of the IT office",
-        "Where is the tech support office",
-        "How do I contact the IT department",
-        "IT department address",
-        "Location of the computing services office",
-        "Contact details for IT support",
-        "Where is Block B, 2nd floor",
-        "I need the IT department email",
-        "Find the IT department",
-        "What is the IT department's contact",
-        "Location of the network support office",
-        "IT support email address",
-        "Where is the place for technical issues",
-        "ESTIN IT department location",
-        "Contact for technical support",
-        "Email to reach the IT staff",
-        "Where is the help desk",
-        "Location and contact for IT"
-      ],
-      "response": [
-        "The IT department is located in Block B, 2nd floor. Contact: it-support@estin.dz"
+        "For the latest news and announcements, please check the official school news section on the website or the main bulletin boards."
       ],
       "file": null
     },
     {
       "tag": "student_clubs",
       "patterns": [
-        "What student clubs are available at ESTIN",
-        "List of all student clubs",
-        "Clubs and societies at the university",
-        "Tell me about the student clubs",
-        "What clubs can I join",
-        "Name all student clubs",
-        "Clubs available for students",
-        "Does ESTIN have a robotics club",
-        "Information on the programming club",
-        "Are there any debate clubs",
-        "List of university clubs",
-        "What are the sports clubs",
-        "Clubs and activities for students",
-        "What extracurricular activities are there",
-        "How many clubs does ESTIN have",
-        "Tell me about the student organizations",
-        "Details on student clubs",
-        "Where can I find a list of clubs",
-        "Clubs I can join at ESTIN",
-        "What are the official student clubs"
+      "What clubs are available at ESTIN",
+      "Tell me about the student clubs",
+      "Information on the School of AI club",
+      "What is Nexus club about",
+      "What are the clubs: SoAI, Nexus, Origo, LDC, Bytcraft",
+      "Clubs in the school",
+      "List the names of all student clubs",
+      "Tell me more about the SoAI club",
+      "What is the focus of Nexus and Origo",
+      "What does the LDC club do",
+      "Information on Bytcraft club",
+      "I want to join a student organization",
+      "What are the tech clubs on campus",
+      "Clubs available for students",
+      "What does School of AI do",
+      "Tell me about Origo and Nexus",
+      "LDC and Bytcraft activities"
       ],
       "response": [
-        "ESTIN has various clubs: Programming Club, Robotics Club, Debate Club, and Sports Club"
+        "ESTIN has several dynamic clubs! These include: School of AI (SoAI) for AI/Data Science, NEXUS for Cybersecurity, ORIGO for environmental awareness, LDC for culture and soft skills, and BYTECRAFT for coding and innovation."
       ],
       "file": null
     },
@@ -869,7 +834,7 @@
         "I've misplaced my student ID"
       ],
       "response": [
-        "If you lose your student ID, report immediately to the administration office. Replacement fee: 500 DZD"
+        "If you lose your student ID, report immediately to the administration office."
       ],
       "file": null
     },
@@ -927,7 +892,7 @@
         "Food service hours"
       ],
       "response": [
-        "Cafeteria hours: 7:00 AM - 7:00 PM. Breakfast: 7-10 AM, Lunch: 11 AM-2 PM, Snacks: 2-7 PM"
+        "Cafeteria hours: 7:00 AM - 5:00 PM."
       ],
       "file": null
     },
@@ -956,7 +921,7 @@
         "Access to the football field"
       ],
       "response": [
-        "Sports facilities include a gym, basketball court, and football field. Open from 6:00 AM to 10:00 PM"
+        "Sports facilities include a gym, open from 7:00 AM to 00:00 PM"
       ],
       "file": null
     },
