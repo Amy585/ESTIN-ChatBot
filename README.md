@@ -44,7 +44,7 @@ Follow these steps to get a local copy of the project running for development.
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [Your-GitHub-Repository-URL]
+    git clone https://github.com/Amy585/ESTIN-ChatBot.git
     cd estin-chatbot
     ```
 
@@ -65,7 +65,7 @@ Follow these steps to get a local copy of the project running for development.
 
     ```ini
     # .env
-    SECRET_KEY='your_strong_secret_key_here'
+    SECRET_KEY='376516e581d179aec1acce910ebefa97e00d985084ef04b5f41de4cdcc541eec'
     FLASK_APP=app.py
     FLASK_DEBUG=True
     ```
@@ -80,11 +80,11 @@ Follow these steps to get a local copy of the project running for development.
 
 ---
 
-## 6. Training the Model
+## 4. Training the Model
 
 The model is trained based on the data in `faq_data.json`. The trained weights are saved to `data.pth`.
 
 If you update the `faq_data.json` file (add new intents, patterns, or responses), you must retrain the model:
 
 ```bash
-python chat.py
+python fnn_train.py
